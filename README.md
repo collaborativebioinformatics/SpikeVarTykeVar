@@ -7,7 +7,7 @@ The goal of this project is to simulate mosaic SNV and SV to evaluate existing t
 ## 1. Spike in experiments
 Here we generate a workflow that can automatically spike in one sample at a given concentration (e.g. 5% VAF) into another sample. We will demonstrate this over spiking in HG002 in to HG0733 for the purpose of demonstration. The downside is that the so generated mixed bam file will include 4 haplotype structures that we cannot correct. The challaning part is further that certain variants (e.g. HG002) will not be presented at the targeted VAF. For example, heterozygous variants wont be represented by 5% bu rather at ~2.5%. To account for this we regenotype variants and report only variants that should be identifiable at the user defined threshold or higher. 
 
-![Workflow](Simulate Moasaic Spike in framework flowchart.png)
+![Workflow2](Simulate Moasaic Spike in framework flowchart.png)
 
 
 
