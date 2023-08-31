@@ -10,4 +10,4 @@ Here we generate a workflow that can automatically spike in one sample at a give
 ## 2. Modification experiments
 [<img src="images/Simulate_Mosaic_Simulation_on_reads_flowchart.png" width="400"/>](Simulate_Mosaic_Simulation_on_reads_flowchart.png)
 
-Here we are modifiying reads directly at their reference position to include artifical mutatioins. In contrast to the above approach we dont introduce new haplotypes with this. The disadvantage however, is that more complex mutations (e.g. rearrangements, duplication or very long SV) wont be able to introduce to the data itself. 
+Here we are modifiying reads directly at their reference position to include artifical mutatioins. In contrast to the above approach we dont introduce new haplotypes with this. The disadvantage however, is that more complex mutations (e.g. rearrangements, duplication or very long SV) wont be able to introduce to the data itself.
