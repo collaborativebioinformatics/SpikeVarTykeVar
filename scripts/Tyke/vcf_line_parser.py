@@ -62,7 +62,7 @@ class VCFLineSV(object):
             self.get_genotype(tab_sep_fields[VCF_MANDATORY_FIELDS], FORMAT)
             self.get_parsed_info(INFO)
             # for Translocation (BND/TRA)
-            self.AF = self.DV/(self.DV+self.DR) if (self.AF == "NA" and self.DV+self.DR != 0) else self.AF
+            #self.AF = self.DV/(self.DV+self.DR) if (self.AF == "NA" and self.DV+self.DR != 0) else self.AF
             self.TRA = "" if self.SVTYPE != "BND" else ALT
             self.END = self.END if self.SVTYPE != "BND" else self.POS + 1
             self.SVLEN = int(self.SVLEN) if self.SVTYPE != "BND" else self.SVLEN
