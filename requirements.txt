@@ -1,2 +1,4 @@
 pysam
 biopython
+mosdepth
+samtools
