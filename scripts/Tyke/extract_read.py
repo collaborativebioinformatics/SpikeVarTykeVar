@@ -2,6 +2,7 @@ import pysam
 import sys
 from Bio import SeqIO
 import argparse
+import gzip
 
 DEBUG = False
 

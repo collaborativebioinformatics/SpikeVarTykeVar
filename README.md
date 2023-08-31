@@ -17,3 +17,5 @@ Here we generate a workflow that can automatically spike in one sample at a give
 [<img src="images/TykeReads_flowchart.png" width="500"/>](Simulate_Mosaic_Simulation_on_reads_flowchart.png)
 
 Here we modifiy reads directly at their reference position to include artifical mutations. In contrast to the above approach we dont introduce new haplotypes with this. The disadvantage however, is that more complex mutations (e.g. rearrangements, duplication or very long structural variants) will not be able to be introduced to the data itself, since the size of the reads is limited.
+
+To get started, please refer to the [Tyke README](scripts/Tyke/README.md).
