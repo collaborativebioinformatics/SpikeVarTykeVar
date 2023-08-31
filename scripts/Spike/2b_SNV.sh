@@ -13,4 +13,4 @@ OUTPUT_VCF=$6
 # activate conda env which uses python 3.6 called mosaicSim
 conda activate mosaicSim
 # call samtools mpileup to genotypes the variants
-samtools mpileup -uf $REF $MOD_BAM | bcftools call -mv -Oz -o $OUTPUT_VCF
+samtools mpileup $MOD_BAM | bcftools call -mv -Oz -o $OUTPUT_VCF
