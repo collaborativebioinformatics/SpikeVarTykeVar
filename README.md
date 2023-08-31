@@ -1,5 +1,8 @@
 # SVHack_simulatemosaic
 
+Meet SpikeReads and TykeReads:
+[<img src="images/Spike and Tyke image4.jpg" width="200"/>](workflow1.png)
+
 ## Background
 
 When comparing genomes of individuals, mutations that appear within a small fraction of the population (<5%) are considered rare variants. However, when assessing a population of cells from a tissue of the same individual, rare variants only present in a small fraction of the cells are called a mosaic variants (MVs). MVs are a challenging to identify because they are mixed in with data from the non-mutated cells and present in the same sequencing file. Therefore, several pipelines have been developed to extract these MVs from whole genome sequencing data. To benchmark and validate the efficiency and accuracy of these methods, sequencing files with known MVs are necessary. We developed two simulation workflows called SpikeRead (**Sp**ike **i**n **K**nown **E**xogenous **Reads**) and TykeReads (**T**ransmute **Y**our **K**ey **E**ndogenous **Reads**), which output sequencing read files with artificial MVs and a ground truth annotation file for the MVs. SpikeReads accomplishes this by spiking in real reads from a sample at user defined ratio into the sequencing file from a second sample. In contrast, TykeRead creates a list of random mutations and modifies a fraction of existing reads to match the user defined MV frequency.
