@@ -24,4 +24,6 @@ Here we modifiy reads directly at their reference position to include artifical 
 
 To get started, please refer to the [Tyke README](scripts/Tyke/README.md).
 
+## Installation
+
 ## Example Implementation
