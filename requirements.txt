@@ -2,3 +2,5 @@ pysam
 biopython
 mosdepth
 samtools
+sniffles
+bcftools
