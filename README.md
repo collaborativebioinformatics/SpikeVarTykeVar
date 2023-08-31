@@ -1,6 +1,7 @@
 # SVHack_simulatemosaic
 
-Meet SpikeReads and TykeReads:
+Meet SpikeReads and TykeReads:  
+
 [<img src="images/Spike and Tyke image4.jpg" width="200"/>](workflow1.png)
 
 ## Background
