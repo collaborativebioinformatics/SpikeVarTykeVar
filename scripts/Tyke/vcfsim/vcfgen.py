@@ -161,7 +161,7 @@ def main():
     for i in gensnps(maxsnp=maxsnp,sub=sub, snplist=snps):
         AFno=(round(uniform(minAF,maxAF),2))
         readno=ceil(AFno*i[2])
-        vcfsnv.append('chr'+str(i[0])+'\t'+str(i[1])+'\t.\t'+str(i[3])+'\t'+str(i[4])+"\t1500\tPASS\t.\tGT:AD:AF\t0/0:"+str(i[2]-readno)+":"+str(readno)+":"+str(round(float(1)-AFno,2))+"/"+str(AFno))
+        vcfsnv.append('chr'+str(i[0])+'\t'+str(i[1])+'\t.\t'+str(i[3])+'\t'+str(i[4])+"\t1500\tPASS\tAF="+str(AFno)+"\tGT:AD\t0/0:"+str(i[2]-readno)+":"+str(readno))
     with open(SNVvcf,"a") as f:
         for i in tuple(vcfsnv)[:-1]:
             f.write(i+'\n')
