@@ -148,20 +148,21 @@ def main():
             dellen=choice(range(minsvl,maxsvl))
             vcfsv.append(str(i[0])+"\t"+str(i[1])+"\tHackDel"+str(delno)+"\tN\t<DEL>\t60\tPASS\tPRECISE;SVTYPE=DEL;SVLEN=-"+str(dellen)+";END="+str(int(i[1])+dellen)+";AF="+str(round(uniform(minAF,maxAF),2))+"\tGT:GQ\t 0/0:60")
             delno+=1
-    with open("HackatlonSV.vcf","a") as f:
+    with open(SVvcf,"a") as f:
         for i in tuple(vcfsv)[:-1]:
             f.write(i+'\n')
         f.write(tuple(vcfsv)[-1])
     f.close()
     #print(snvloc)
-    vcfsnv=['##fileformat=VCFv4.2','##FILTER=<ID=PASS,Description="All filters passed">','##FORMAT=<ID=GT,Number=1,Type=String,Description="Genotype">','##FORMAT=<ID=AD,Number=R,Type=Integer,Description="Read depth for each allele">','#CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO	FORMAT']
+    vcfsnv=['##fileformat=VCFv4.2','##FILTER=<ID=PASS,Description="All filters passed">','##FORMAT=<ID=GT,Number=1,Type=String,Description="Genotype">','##FORMAT=<ID=AD,Number=R,Type=Integer,Description="Read depth for each allele">','##INFO=<ID=AF,Number=1,Type=Float,Description="Allele Frequency">','#CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO	FORMAT']
     snps=getrefsnp('hg19.fa',snvloc)
     from math import log
     
     for i in gensnps(maxsnp=maxsnp,sub=sub, snplist=snps):
-        readno=ceil((uniform(minAF,maxAF)*i[2]))
-        vcfsnv.append('chr'+str(i[0])+'\t'+str(i[1])+'\t.\t'+str(i[3])+'\t'+str(i[4])+"\t1500\tPASS\t.\tGT:AD\t0/0:"+str(i[2]-readno)+":"+str(readno))
-    with open("HackatlonSNV.vcf","a") as f:
+        AFno=(round(uniform(minAF,maxAF),2))
+        readno=ceil(AFno*i[2])
+        vcfsnv.append('chr'+str(i[0])+'\t'+str(i[1])+'\t.\t'+str(i[3])+'\t'+str(i[4])+"\t1500\tPASS\t.\tGT:AD:AF\t0/0:"+str(i[2]-readno)+":"+str(readno)+":"+str(round(float(1)-AFno,2))+"/"+str(AFno))
+    with open(SNVvcf,"a") as f:
         for i in tuple(vcfsnv)[:-1]:
             f.write(i+'\n')
         f.write(tuple(vcfsnv)[-1])
