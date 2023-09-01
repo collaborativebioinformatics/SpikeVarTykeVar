@@ -259,6 +259,9 @@ Below are 2 of several variants that overlapped between the ground truth and cal
 [<img src="images/TykeVarMosaicDel.png " align="center"/>](TykeVarMosaicDel.png )  
 <p align="center"><b>An SV deletion.</b></p>
 
+[<img src="images/TykeVarMosaicSNP.png " align="center"/>](TykeVarMosaicSNP.png )  
+<p align="center"><b>An SNP.</b></p>
+
 ## Method Description 
 
 ### 1. SpikeVar - Generation of Sequencing Data With a Low Frequencing of Reads From Another Sample
