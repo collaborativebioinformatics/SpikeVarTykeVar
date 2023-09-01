@@ -120,7 +120,7 @@ Note that before running the merge and filter step, the modified reads need to b
 against the original reference.
 
 ```
-usage: filter_merge_bam.py [-b BAM] [-m MOD_BAM] [--primary] [-o OUT_DIR] [--prefix PREFIX]
+python filter_merge_bam.py -b <BAM> -m <MOD_BAM> --primary -o <OUT_DIR> --prefix <PREFIX>
 ```
 
 <img src="images/TykeVarMerger.png"  height="200" align="right">
@@ -132,8 +132,18 @@ In the above cmd:
 * OUT_DIR is the output location for the merged and filtered final BAM.
 * PREFIX is used to define a filename prefix for the output file.
 
-
 #### 4) Run Your Favorite Mosaic Variant Caller and Compare Results
+For SV calling, we tried Sniffles:
+```
+sniffles --input <MOD_MERGED_BAM> --vcf sniffles_out.vcf --mosaic --threads 8
+```
+* MOD_MERGED_BAM is the output bam file from `MOD_MERGED_BAM`
+
+for SNV calling, we ran longshot:
+```
+longshot --bam <MOD_MERGED_BAM> --ref <REF> --out longshot_out.vcf --min_cov 3
+```
+
 
 ## Example Implementation
 
