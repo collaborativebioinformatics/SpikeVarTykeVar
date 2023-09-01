@@ -46,7 +46,7 @@ In house. File name: NHGRI_UCSC_panel-HG00733-grch37_sorted.bam
 
 VCF
 
-ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/phase3/data/HG00733/cg\_data/HG00733\_blood\_SRR833538.wgs.COMPLETE\_GENOMICS.20130401.snps\_indels\_svs\_meis.high\_coverage.genotypes.vcf.gz
+In house. File name: HG00733_truvari_li_grch37_SV_with_IDs.vcf
 
 ##### Short Reads
 
