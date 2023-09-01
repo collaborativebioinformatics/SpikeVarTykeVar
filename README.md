@@ -69,8 +69,9 @@ First all variants stored from both VCF files need to be merged and the VAF need
 Depending on the variants we either start a SNV or SV caller, which can recalculate the VAF of each variant. 
 For SNVs we are using bcftools mpileup. For SVs and short read data we are using Paragraph from Illumina and for long read data Sniffles2 is used.
 
+Last the re-genotyped VCF is filtered according to the VAF with a small Python script, which calculates the minor allele frequency (MAF) for each variant and lets a variant pass to the final output if the MAF is equal or greater then the use specified VAF.
 ```
-./2b_re-genotyping_main.sh VARIANT VAF VCF_1 VCF_2 MODIFIED_BAM OUTPUT_DIR READ_LENGTH REFERENCE
+./2b_re-genotyping_main.sh <VARIANT> <VAF> <sampleA.vcf> <sampleB.vcf> <sampleAandB.bam> output/path <ref.fa> <short|long>
 ```
 #### 3) Run Your Favorite Mosaic Variant Caller and Compare Results
 
