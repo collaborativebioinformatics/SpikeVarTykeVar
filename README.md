@@ -260,14 +260,14 @@ The `mod_chr22.bam` file was run through Sniffles to determine potential mosaic 
 Sniffles were both visualized on IGV to get a subjective view of whether the modified reads led to mosaic variants being introduced and detected.
 Below are 2 of several variants that overlapped between the ground truth and caller VCF and were confirmed in the underlying data.
 
-[<img src="images/TykeVarMosaicInsert.png " align="center"/>](TykeVarMosaicInsert.png )  
+[<img src="images/TykeVarMosaicInsert.png" align="center"/>](TykeVarMosaicInsert.png)  
 <p align="center"><b>A mosaic SV insertion.</b></p>
 <br />
 
-[<img src="images/TykeVarMosaicDel.png " align="center"/>](TykeVarMosaicDel.png )  
+[<img src="images/TykeVarMosaicDel.png" align="center"/>](TykeVarMosaicDel.png)  
 <p align="center"><b>A mosaic SV deletion.</b></p>
 
-[<img src="images/TykeVarMosaicSNP.png " align="center"/>](TykeVarMosaicSNP.png )  
+[<img src="images/TykeVarMosaicSNP.png" align="center"/>](TykeVarMosaicSNP.png)  
 <p align="center"><b>A mosaic SNP.</b></p>
 
 ## Method Description 
