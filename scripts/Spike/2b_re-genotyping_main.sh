@@ -38,4 +38,4 @@ else
 fi
 
 # Filter the output VCF file according to the VAF
-bcftools filter -i "FORMAT/AD[1] >= $VAF" $OUTPUT_VCF -o $OUTPUT_VCF_FILTERED
+python vaf_seperator.py $OUTPUT_VCF $VAF $OUTPUT_VCF_FILTERED
