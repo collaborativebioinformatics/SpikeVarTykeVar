@@ -22,16 +22,17 @@ READ_LENGTH=$7
 MERGED_VCF="${OUTPUT_DIR}/merged.vcf"
 OUTPUT_VCF="${OUTPUT_DIR}/output_genotypes.vcf"
 OUTPUT_VCF_FILTERED="${OUTPUT_DIR}/output_genotypes_filtered.vcf"
+REFERENCE=${8}
 
 # Merge the two VCF files with bcf tools
 bcftools merge $VCF_1 $VCF_2 -o $MERGED_VCF --use-header
 
 if [ "$VARIANT" = "SNV" ]; then
     echo "Input is 'SNV'"
-    ./2b_SNV.sh $READ_LENGTH $VAF $MERGED_VCF $MOD_BAM $OUTPUT_VCF
+    ./2b_SNV.sh $READ_LENGTH $VAF $MERGED_VCF $MOD_BAM $OUTPUT_VCF $REFERENCE
 elif [ "$VARIANT" = "SV" ]; then
     echo "Input is 'SV'"
-    ./2b_SV.sh $READ_LENGTH $VAF $MERGED_VCF $MOD_BAM $OUTPUT_VCF
+    ./2b_SV.sh $READ_LENGTH $VAF $MERGED_VCF $MOD_BAM $OUTPUT_VCF $REFERENCE "Spike_out"
 else
     echo "Error: Invalid input"
 fi
