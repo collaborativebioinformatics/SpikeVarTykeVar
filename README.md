@@ -39,7 +39,7 @@ conda activate mosaicSim
 - samtools 1.15.1
 - Python 3.6.8
 - bcftools
-
+  
 ### TykeVar
 - pysam (0.21.0) 
 - numpy (1.25.2)
