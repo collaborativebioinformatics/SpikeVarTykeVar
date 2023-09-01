@@ -63,14 +63,14 @@ sh spike-in.sh <path to sampleA.bam> <path to sampleB.bam> <spike-in ratio x/100
 ```
 #### 2) SpikeVarReporter
 
-<img src="images/SpikeVarReporter.png"  height="150" align="right">  
+<img src="images/SpikeVarReporter.png"  height="250" align="right">  
 
 TODO
 
 
 ### TykeVar
 
-#### 1) Generate simulated VCF
+#### 1) TykeVarSimulator - Generate simulated VCF
 
 <img src="images/TykeVarSimulator.png"  height="130" align="right">
 
@@ -90,7 +90,7 @@ e.g. python vcfgen.py chr22.bam hs37d5.fa chr22
 The above generates a chr22SV.vcf and chr22SNV.vcf file
 ```
 
-#### 2) Generate edited reads based on simulated VCF
+#### 2) TykeVarEditor - Generate edited reads based on simulated VCF
 
 
 ```
@@ -104,6 +104,11 @@ The BAM file is used to find the reads which overlap with variant locations. Onl
 corresponding to a particular variant location are edited. This is determined by the allele frequency.
 The output FASTQ file has the edited reads. The query name of each read is kept the same.
 
+#### 3) TykeVarMerger - Re-align modified reads and merge them
+
+
+
+<img src="images/TykeVarMerger.png"  height="200" align="right">
 
 ## Example implementation
 
