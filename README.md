@@ -1,8 +1,8 @@
-# MosaicSim: Simulation of Mosaic Variants in Sequencing Data
+# SpikeVar & TykeVar: Simulation of Mosaic Variants in Sequencing Data
 
 **Hackathon team: Lead: Fritz Sedlazeck - Developers: Xinchang Zheng, Michal Izydorczyk, Chi-Lam Poon, Philippe Sanio, Farhang Jaryani, Joyjit Daw, Divya Kalra - Writers: Erik Stricker, Sontosh Deb**
 
-*MosaicSim provides two simulation workflows which output sequencing read files with artificial mosaic variants and a ground truth mosaic variantannotation file for the validation of mosaic variant callers.*
+*We provide two simulation workflows which output sequencing read files with artificial mosaic variants and a ground truth mosaic variantannotation file for the validation of mosaic variant callers.*
 
 
 ## Table of Contents
