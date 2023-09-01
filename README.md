@@ -70,7 +70,7 @@ Depending on the variants we either start a SNV or SV caller, which can recalcul
 For SNVs we are using bcftools mpileup. For SVs and short read data we are using Paragraph from Illumina and for long read data Sniffles2 is used.
 
 ```
-./2b_re-genotyping_main.sh VARIANT VAF VCF_1 VCF_2 MODIFIED_BAM OUTPUT_DIR, READ_LENGTH
+./2b_re-genotyping_main.sh VARIANT VAF VCF_1 VCF_2 MODIFIED_BAM OUTPUT_DIR READ_LENGTH REFERENCE
 ```
 #### 3) Run Your Favorite Mosaic Variant Caller and Compare Results
 
@@ -166,7 +166,7 @@ First we merge both VCF files from e.g. HG002 and HG00733 with bcftools. Dependi
 For SNVs we are using bcftools mpileup. For SVs and short read data we are using Paragraph from Illumina and for long read data Sniffles2 is used.
 
 ```
-./2b_re-genotyping_main.sh SV 0.05 HG002_SV.Tier1.vcf HG00377_SV.Tier1.vcf SPIKED.BAM ./ LONG
+./2b_re-genotyping_main.sh SV 0.05 HG002_SV.Tier1.vcf HG00377_SV.Tier1.vcf SPIKED.BAM ./ LONG hs37d5.fa
 ```
 
 #### 4) Run Your Favorite Mosaic Variant Caller
