@@ -6,7 +6,16 @@ Meet SpikeVar and TykeVar:
 
 https://github.com/collaborativebioinformatics/SVHack_simulatemosaic/assets/37314125/4d0dfe58-501c-4ee8-99ea-ff3411e23b4f 
 
-![Erik Stricker]("Erik Stricker.jpg" "Erik Stricker") ![Chi-Lam Poon]("Chi-Lam Poon.jpg" "Chi-Lam Poon") .
+
+<p float="left">
+  <img src="images/Erik Stricker.jpg" height="150" width="250" />
+  Erik Stricker
+  <img src="Chi-Lam Poon.jpg" height="150" width="250" />
+  Chi-Lam Poon
+  <img src="images/Philippe Sanio.jpg" height="150" width="250" />
+</p>
+
+![Erik Stricker]("images/Erik Stricker.jpg" "Erik Stricker") ![Chi-Lam Poon]("Chi-Lam Poon.jpg" "Chi-Lam Poon") .
 
 ## Background
 
