@@ -71,15 +71,15 @@ def edit_read(ref_seq, ref_start, read, quals, cigartuples, variant_pos, variant
             new_seq = read[:read_var_pos + 1] + insert_seq + read[read_var_pos + 1:]
             if quals:
                 qual_seq = [60] * len(insert_seq)
-                new_qual = quals[:read_var_pos + 1] + qual_seq + quals[read_var_pos + 1:]
+                new_qual = list(quals[:read_var_pos + 1]) + qual_seq + list(quals[read_var_pos + 1:])
         elif variant_op == "SNV":
             new_seq = read[:read_var_pos] + insert_seq + read[read_var_pos+1:]
             if quals:
-                new_qual = quals[:read_var_pos] + [60] + quals[read_var_pos+1:]
+                new_qual = list(quals[:read_var_pos]) + [60] + list(quals[read_var_pos+1:])
         else:
             new_seq = read[:read_var_pos] + ( read[read_var_pos + variant_length:] if (read_var_pos + variant_length) < len(read) else "")
             if quals:
-                new_qual = quals[:read_var_pos] + ( quals[read_var_pos + variant_length:] if (read_var_pos + variant_length) < len(read) else "")
+                new_qual = list(quals[:read_var_pos]) + ( list(quals[read_var_pos + variant_length:]) if (read_var_pos + variant_length) < len(read) else [])
         if DEBUG:
             print(f"Insert variant at {read_var_pos}")
             print(f"Bef - {read}")
