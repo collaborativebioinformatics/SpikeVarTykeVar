@@ -137,7 +137,7 @@ For SV calling, we tried Sniffles:
 ```
 sniffles --input <MOD_MERGED_BAM> --vcf sniffles_out.vcf --mosaic --threads 8
 ```
-* MOD_MERGED_BAM is the output bam file from `MOD_MERGED_BAM`
+* MOD_MERGED_BAM is the output bam file from `filter_merge_bam.py`
 
 for SNV calling, we ran longshot:
 ```
