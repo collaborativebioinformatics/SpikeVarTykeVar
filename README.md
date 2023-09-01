@@ -253,14 +253,14 @@ Sniffles were both visualized on IGV to get a subjective view of whether the mod
 Below are 2 of several variants that overlapped between the ground truth and caller VCF.
 
 [<img src="images/TykeVarMosaicInsert.png " align="center"/>](TykeVarMosaicInsert.png )  
-<p align="center"><b>An SV insertion.</b></p>
+<p align="center"><b>A mosaic insertion introduced into the reads by modifying a subset of the reads.</b></p>
 <br />
 
 [<img src="images/TykeVarMosaicDel.png " align="center"/>](TykeVarMosaicDel.png )  
-<p align="center"><b>An SV deletion.</b></p>
+<p align="center"><b>iA mosaic deletion introduced into the reads by modifying a subset of the reads.</b></p>
 
 [<img src="images/TykeVarMosaicSNP.png " align="center"/>](TykeVarMosaicSNP.png )  
-<p align="center"><b>An SNP.</b></p>
+<p align="center"><b>A mosaic SNP introduced into the reads by modifying a subset of the reads.</b></p>
 
 ## Method Description 
 
