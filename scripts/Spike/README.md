@@ -14,6 +14,14 @@ pip install -r requirements.txt
 ```
 
 To spike-in sample B into sample A:
-```bash
+
+Dependencies:
+
+* mosdepth 0.3.2
+* samtools 1.15.1
+* Python 3.6.8
+
+Example:
+```
 sh spike-in.sh <path to sampleA.bam> <path to sampleB.bam> <spike-in ratio> <path to samtools binary> <path to mosdepth binary> <output dirpath> <path to script calculate_ratio.py>
 ```
