@@ -1,6 +1,8 @@
 # SpikeVar and Tykevar
 
-<video width="100" height="100" align="right" src="https://github.com/collaborativebioinformatics/SVHack_simulatemosaic/assets/37314125/4d0dfe58-501c-4ee8-99ea-ff3411e23b4f" ></video><br>Spike and Tyke
+https://github.com/collaborativebioinformatics/SVHack_simulatemosaic/assets/37314125/4d0dfe58-501c-4ee8-99ea-ff3411e23b4f  
+
+Spike and Tyke
 
 ## Contributers
 
