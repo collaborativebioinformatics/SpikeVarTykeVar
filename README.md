@@ -41,6 +41,8 @@ conda activate mosaicSim
 The spiked-in dataset simulates a sample with potential mosiac variants at a user-specified ratio. The re-genotyped VCFs of the samples and the VCF of the spiked-in dataset can be compared to evaluate AF < user-specified value.
 
 #### 1) Generate spiked-in dataset
+
+<img src="images/SpikeVarDatabaseCreater.png"  height="130" align="right">
 ```
 sh spike-in.sh <path to sampleA.bam> <path to sampleB.bam> <spike-in ratio> <path to samtools binary> <path to mosdepth binary> <output dirpath> <path to script calculate_ratio.py>
 ```
