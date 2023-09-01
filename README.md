@@ -46,7 +46,7 @@ where `$REPO_ROOT` is the root folder of the repository.
 
 ### TykeVar
 
-#### Generate simulated VCF
+#### 1) Generate simulated VCF
 
 The VCF simulator generates a random set of mosaic variants (SNVs and SVs). The variants
 can be parameterized with VAF, number of variants to simulate and the size of the variations.
@@ -63,7 +63,7 @@ e.g. python vcfgen.py chr22.bam hs37d5.fa chr22
 The above generates a chr22SV.vcf and chr22SNV.vcf file
 ```
 
-#### Generate edited reads based on simulated VCF
+#### 2) Generate edited reads based on simulated VCF
 
 ```
 python main.py -v <SIMULATED_VCF> -b <BAM> -r <REF> -o <OUTPUT_FASTQ>
@@ -86,14 +86,14 @@ Here, we use the SpikeVar workflow to automatically spike in sample HG002 at a 5
 Here, we use the TykeVar workflow to modifiy reads of HG002 directly at their reference position by including artifical mutations to represent at variant allele frequency of 5%. In contrast to the above approach we do not introduce new haplotypes with this. However, more complex mutations (e.g. rearrangements, duplication or very long structural variants) will not be able to be introduced to the data itself, since the size of the reads is limited.
 
 
-#### Fetch data
+#### 1) Fetch data
 In order to simulate and edit reads, the pipeline first needs an initial set of aligned reads and a reference. For our demonstration, we will use the GIAB datasets.
 
 Reads - `ftp://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/data/AshkenazimTrio/HG002_NA24385_son/Ultralong_OxfordNanopore/guppy-V3.2.4_2020-01-22/HG002_hs37d5_ONT-UL_GIAB_20200122.phased.bam` and `ftp://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/data/AshkenazimTrio/HG002_NA24385_son/Ultralong_OxfordNanopore/guppy-V3.2.4_2020-01-22/HG002_hs37d5_ONT-UL_GIAB_20200122.phased.bam.bai`
 
 Reference - `https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/release/references/GRCh37/hs37d5.fa.gz`
 
-#### Generate variants and modified reads
+#### 2) Generate variants and modified reads
 
 First we decompress the FASTA file.
 ```
@@ -110,13 +110,13 @@ Generate a set of modified reads with inserted variants.
 python main.py -v hg002SV.vcf -b HG002_hs37d5_ONT-UL_GIAB_20200122.phased.bam -r hs37d5.fa -o hg002_modified_reads.fastq
 ```
 
-#### Re-align modified reads and merge them
+#### 3) Re-align modified reads and merge them
 Once the new reads are generated, they need to be re-aligned and re-inserted back into
 the dataset by replacing the original reads.
 
 TODO:
 
-#### Run your favorite mosaic variant caller
+#### 4) Run your favorite mosaic variant caller
 
 TODO:
 
