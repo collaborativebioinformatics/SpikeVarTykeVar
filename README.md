@@ -165,7 +165,11 @@ For SNVs we are using bcftools mpileup. For SVs and short read data we are using
 
 Run you choice of mosaic variant caller on the modified `HG002_ONT_hg37_chr5_HG00733_ONT_hg37_chr5_merged.sorted.bam` file and compare the results with the validation `.vcf` file.
 
-[Screenshots for spiked variants](./scripts/Spike/Screen_shots.md)
+Example of a of a spiked in deletion on chromosome X:
+<img src="images/Spike_screenshot_sv.png"  align="center">  
+
+Example of a of a spiked in inserton on chromosome 5:
+<img src="images/Spike_screenshot_sv2_ins.png"  align="center">  
 
 ### TykeVar
 
