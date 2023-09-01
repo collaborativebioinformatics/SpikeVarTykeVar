@@ -1,4 +1,6 @@
-# SVHack_simulatemosaic
+# SpikeVar and Tykevar
+
+<video width="100" height="100" align="right" src="https://github.com/collaborativebioinformatics/SVHack_simulatemosaic/assets/37314125/4d0dfe58-501c-4ee8-99ea-ff3411e23b4f" ></video><br>Spike and Tyke
 
 ## Contributers
 
@@ -8,9 +10,6 @@
 
 |<img src="images/Joyjit Daw.png" width="150"/><br>Joyjit Daw|<img src="images/Michal Bogumil Izydorczyk.png" width="150"/><br>Michal Izydorczyk|<img src="images/Sontosh K Deb.jpg" width="150"/><br>Sontosh Deb.jpg|<img src="images/Fritz Sedlazeck.jpg" width="150"/><br>Fritz Sedlazeck|<img src="images/Divya Kalra.jpg" width="150"/><br>Divya Kalra|
 |:-:|:-:|:-:|:-:|:-:|
-
-|<video width="100" height="100" src="https://github.com/collaborativebioinformatics/SVHack_simulatemosaic/assets/37314125/4d0dfe58-501c-4ee8-99ea-ff3411e23b4f"></video><br>Spike and Tyke|
-|:-:|
 
 
 ## Background
