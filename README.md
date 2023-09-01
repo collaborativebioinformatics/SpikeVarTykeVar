@@ -36,6 +36,20 @@ conda activate mosaicSim
 
 ## How to use it
 
+### SpikeVar
+
+The spiked-in dataset simulates a sample with potential mosiac variants at a user-specified ratio. The re-genotyped VCFs of the samples and the VCF of the spiked-in dataset can be compared to evaluate AF < user-specified value.
+
+#### 1) Generate spiked-in dataset
+```
+sh spike-in.sh <path to sampleA.bam> <path to sampleB.bam> <spike-in ratio> <path to samtools binary> <path to mosdepth binary> <output dirpath> <path to script calculate_ratio.py>
+```
+#### 2) XXX  Philippe add info
+TODO
+
+#### 3) XXX  Xingchang add info
+TODO
+
 ### TykeVar
 
 #### 1) Generate simulated VCF
@@ -88,7 +102,7 @@ Reads - `ftp://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/data/AshkenazimT
 #### 2) Generate spike-in dataset
 We spiked 5% reads from HG0733 to HG002 for the next part of the workflow.
 ```
-sh spike-in.sh <path to sampleA.bam> <path to sampleB.bam> <spike-in ratio> <path to samtools binary> <path to mosdepth binary> <output dirpath> <path to script calculate_ratio.py>
+sh spike-in.sh HG002_hs37d5_ONT-UL_GIAB_20200122.phased.bam HG007733.bam 0.05 /software/bin/samtools /software/bin/mosdepth /output `pwd`/calculate_ratio.py
 ```
 #### 3)  XXXX  Philippe add info
 TODO:
