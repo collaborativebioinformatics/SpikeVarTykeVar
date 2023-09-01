@@ -15,14 +15,7 @@ REFERENCE=$6
 OUTPUT_PFX=$7
 
 # Descide which READ_LENGTH was selected
-
 if [ "$READ_LENGTH" = "short" ]; then
-    echo "Input is 'short' starting svtyper"
-    # change to conda env which uses python 2.7 called mosaicSim27
-    conda activate mosaicSim27
-    svtyper -B $MOD_BAM -i $MERGED_VCF -o $OUTPUT_VCF
-
-if [ "$READ_LENGTH" = "short_paragraph" ]; then
     
     bin/idxdepth -b ${MOD_BAM} -r ${REFERENCE} -o ${OUTPUT_PFX}.depth.json
     printf  "id\tpath\tidxdepth\nmxsample\t${MOD_BAM}\t${OUTPUT_PFX}.depth.json\n" > ${OUTPUT_PFX}.sample_manifest.txt
