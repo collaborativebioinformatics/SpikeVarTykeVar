@@ -4,4 +4,6 @@ number of variants to simulate and the size of the variations. The generated fil
 The variants generated here act as an input into the read editor step (described below) which generates modified reads 
 with the variants inserted into them. The same VCF file is also the ground truth for evaluating mosaic variant callers.
 
-python vcfgen.py <path_to_bam> <path_to_ref> <output_path_prefix>
+python TykeVarSimulator.py <path_to_bam> <path_to_ref> <output_path_prefix>
+
+To modify runtime parameters, go to header of the script and change variables according to included comments.
