@@ -19,11 +19,15 @@ spikein_prefix=`basename ${spikein_bampath} .bam`
 # check coverage of input data
 baseline_mosdepth_submission=$(sbatch --chdir ${output_dirpath} --mail-type FAIL \
                                       --error baseline-mosdepth.err --output baseline-mosdepth.out \
+                                      --job-name mosdepth --tasks-per-node 8 --mem 16gb --time 3:00:00 \
+                                      --partition medium --account proj-fs0002 \
                                       run_mosdepth.sh ${baseline_bampath} \
                                       ${baseline_prefix} ${mosdepth_path}
                             )
 spikein_mosdepth_submission=$(sbatch --chdir ${output_dirpath} --mail-type FAIL \
                                      --error spikein-mosdepth.err --output spikein-mosdepth.out \
+                                     --job-name mosdepth --tasks-per-node 8 --mem 16gb	--time 3:00:00 \
+                                     --partition medium --account proj-fs0002 \
                                      run_mosdepth.sh ${spikein_bampath} \
                                       ${spikein_prefix} ${mosdepth_path}
                            )
@@ -36,6 +40,8 @@ then
     spikein_mosdepth_jobid=`echo ${spikein_mosdepth_submission} | awk '{print $4}'`
     calc_ratio_submission=$(sbatch --chdir ${output_dirpath} --mail-type FAIL \
                                    --error calculate-ratio.err --output calculate-ratio.out \
+                                   --job-name calculate-ratio --tasks-per-node 1 --mem 2gb \
+                                   --time 2:00:00 --partition compute --account proj-fs0002 \
                                    --dependency afterok:${baseline_mosdepth_jobid}:${spikein_mosdepth_jobid} \
                                    run_calculate_ratio.sh ${baseline_prefix} ${spikein_prefix} \
                                    ${output_dirpath} ${ratio} ${calcratio_script_path}
@@ -47,11 +53,15 @@ then
         calcratio_jobid=`echo ${calc_ratio_submission} | awk '{print $4}'`
         baseline_subsample_submission=$(sbatch --chdir ${output_dirpath} --mail-type FAIL \
                                                --error baseline_subsample.err --output baseline_subsample.out \
+                                               --job-name subsample --tasks-per-node 10 --mem 30gb \
+                                               --time 3:00:00 --partition medium --account proj-fs0002 \
                                                --dependency afterok:${calcratio_jobid} \
                                                run_subsample.sh ${baseline_bampath} ${samtools_path} ${output_dirpath}
                                      )
         spikein_subsample_submission=$(sbatch --chdir ${output_dirpath} --mail-type FAIL \
                                               --error spikein_subsample.err --output spikein_subsample.out \
+                                              --job-name subsample --tasks-per-node 10 --mem 30gb \
+                                              --time 3:00:00 --partition medium --account proj-fs0002 \
                                               --dependency afterok:${calcratio_jobid} \
                                               run_subsample.sh ${spikein_bampath} ${samtools_path} ${output_dirpath}
                                     )
@@ -63,6 +73,8 @@ then
 
             merge_submission=$(sbatch --chdir ${output_dirpath} --mail-type FAIL \
                                       --error merge.err --output merge.out \
+                                      --job-name merge --tasks-per-node 10 --mem 16gb \
+                                      --time 3:00:00 --partition medium --account proj-fs0002 \
                                       --dependency afterok:${baseline_subsample_jobid}:${spikein_subsample_jobid} \
                                       run_merge.sh ${baseline_prefix} ${spikein_prefix} \
                                       ${samtools_path} ${output_dirpath}
@@ -76,6 +88,8 @@ then
                 
                 subsample_mosdepth_submission=$(sbatch --chdir ${output_dirpath} --mail-type FAIL \
                                                        --error merge-mosdepth.err --output merge-mosdepth.out \
+                                                       --job-name mosdepth --tasks-per-node 8 --mem 16gb \
+                                                       --time 3:00:00 --partition medium --account proj-fs0002 \
                                                        --dependency afterok:${merge_jobid} \
                                                        run_mosdepth.sh ${merge_bampath} \
                                                        ${merge_prefix} ${mosdepth_path}
