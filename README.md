@@ -143,6 +143,10 @@ For SNVs we are using bcftools mpileup. For SVs and short read data we are using
 ./2b_re-genotyping_main.sh VARIANT VAF VCF_1 VCF_2 MODIFIED_BAM OUTPUT_DIR, READ_LENGTH
 ```
 
+#### 4) Run your favorite mosaic variant caller
+
+Run you choice of mosaic variant caller on the modified `HG002_ONT_hg37_chr5_HG00733_ONT_hg37_chr5_merged.sorted.bam` file and compare the results with the validation `.vcf` file.
+
 ### TykeVar
 
 Here, we use the TykeVar workflow to modifiy reads of HG002 directly at their reference position by including artifical mutations to represent at variant allele frequency of 5%. In contrast to the above approach we do not introduce new haplotypes with this. However, more complex mutations (e.g. rearrangements, duplication or very long structural variants) will not be able to be introduced to the data itself, since the size of the reads is limited.
@@ -215,7 +219,7 @@ The SpikeVarReporter then determines VAFs for each variant in the mixed dataset 
  
 To assess a mosaic variant caller’s sensitivity and accuracy, the same mixed dataset is used to call mosaic variants. The output mosaic variant locations and VAFs are then compared to the truth set for validation.  
 
-### 2. TykeVar- Creation of sequencing data with a subset of modified reads
+### 2. TykeVar - Creation of sequencing data with a subset of modified reads
 [<img src="images/TykeVar_flowchart_updated.png" width="500"/>](Simulate_Mosaic_Simulation_on_reads_flowchart.png)
 
 The TykeVar workflow produces a modified aligned sequence file in .bam format. This file contains modified reads simulating randomly positioned mosaic variants with user-defined VAF in random locations and is accompanied by a .vcf file containing the locations of the simulated mosaic variants with user-defined VAF. 
