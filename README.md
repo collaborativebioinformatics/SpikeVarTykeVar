@@ -65,7 +65,13 @@ sh spike-in.sh <path to sampleA.bam> <path to sampleB.bam> <spike-in ratio x/100
 
 <img src="images/SpikeVarReporter.png"  height="250" align="right">  
 
-TODO
+After creating the new merged BAM file, we have to re-calculate the variant allele frequency (VAF) for all variants.
+First we merge both VCF files from with bcftools. Depending on the variants we either start a SNV or SV caller, which can recalculate the VAF of each variant. 
+For SNVs we are using bcftools mpileup. For SVs and short read data we are using Paragraph from Illumina and for long read data Sniffles2 is used.
+
+```
+./2b_re-genotyping_main.sh VARIANT VAF VCF_1 VCF_2 MODIFIED_BAM OUTPUT_DIR, READ_LENGTH
+```
 
 
 ### TykeVar
