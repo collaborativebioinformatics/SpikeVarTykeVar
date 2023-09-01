@@ -1,4 +1,4 @@
-# MosaicSim: Simulation of mosaic variants in sequencing data
+# MosaicSim: Simulation of Mosaic Variants in Sequencing Data
 
 **Hackathon team: Lead: Fritz Sedlazeck - Developers: Xinchang Zheng, Michal Izydorczyk, Chi-Lam Poon, Philippe Sanio, Farhang Jaryani, Joyjit Daw, Divya Kalra - Writers: Erik Stricker, Sontosh Deb**
 
@@ -6,7 +6,7 @@
 
 
 ## Table of Contents
-|1. [Background](#background)<br>2. [Installation](#installation)<br>3. [Dependencies](#dependencies)<br>4. [How to use it](#how-to-use-it)<br>5. [Example implementation](#example-implementation)<br>6. [Method Description](#method-description)<br>7. [Contributers](#contributers)<br>8. [References](#references)<br><img width=1000/>|<video src="https://github.com/collaborativebioinformatics/SVHack_simulatemosaic/assets/37314125/4d0dfe58-501c-4ee8-99ea-ff3411e23b4f" width="200" height="200" align="right">|
+|1. [Background](#background)<br>2. [Installation](#installation)<br>3. [Dependencies](#dependencies)<br>4. [How to Use It](#how-to-use-it)<br>5. [Example Implementation](#example-implementation)<br>6. [Method Description](#method-description)<br>7. [Contributers](#contributers)<br>8. [References](#references)<br><img width=1000/>|<video src="https://github.com/collaborativebioinformatics/SVHack_simulatemosaic/assets/37314125/4d0dfe58-501c-4ee8-99ea-ff3411e23b4f" width="200" height="200" align="right">|
 |:------|-:|
 
 
@@ -45,13 +45,13 @@ conda activate mosaicSim
 - numpy (1.25.2)
 - biopython (1.81)
 
-## How to use it
+## How to Use It
 
 ### SpikeVar
 
 The spiked-in dataset simulates a sample with potential mosiac variants at a user-specified ratio. The re-genotyped VCFs of the samples and the VCF of the spiked-in dataset can be compared to evaluate AF < user-specified value.
 
-#### 1) SpikeVarDatabaseCreator - Generate spiked-in dataset
+#### 1) SpikeVarDatabaseCreator - Generate Spiked-in Dataset
 
 <img src="images/SpikeVarDatabaseCreator.png"  height="150" align="right">  
 
@@ -60,7 +60,7 @@ In this step, x% of mutations are strategically introduced from sample A to samp
 ```
 sh spike-in.sh <path to sampleA.bam> <path to sampleB.bam> <spike-in ratio x/100> <path to samtools binary> <path to mosdepth binary> <output dirpath> <path to script calculate_ratio.py>
 ```
-#### 2) SpikeVarReporter
+#### 2) SpikeVarReporter - Filter Reads After Variant Allele Frequency Recalculation
 
 <img src="images/SpikeVarReporter.png"  height="250" align="right">  
 
@@ -72,13 +72,13 @@ For SNVs we are using bcftools mpileup. For SVs and short read data we are using
 ```
 ./2b_re-genotyping_main.sh VARIANT VAF VCF_1 VCF_2 MODIFIED_BAM OUTPUT_DIR, READ_LENGTH
 ```
-#### 3) Run your favorite mosaic variant caller and compare results
+#### 3) Run Your Favorite Mosaic Variant Caller and Compare Results
 
 ### TykeVar
 
 Once the python dependencies are installed, the scripts can be run directly from the `scripts/Tyke` subfolder.
 
-#### 1) TykeVarSimulator - Generate simulated VCF
+#### 1) TykeVarSimulator - Generate Simulated VCF
 
 <img src="images/TykeVarSimulator.png"  height="130" align="right">
 
@@ -98,7 +98,7 @@ e.g. python vcfgen.py chr22.bam hs37d5.fa chr22
 The above generates a chr22SV.vcf and chr22SNV.vcf file
 ```
 
-#### 2) TykeVarEditor - Generate edited reads based on simulated VCF
+#### 2) TykeVarEditor - Generate Edited Reads Based on Simulated VCF
 
 
 ```
@@ -112,7 +112,7 @@ The BAM file is used to find the reads which overlap with variant locations. Onl
 corresponding to a particular variant location are edited. This is determined by the allele frequency.
 The output FASTQ file has the edited reads. The query name of each read is kept the same.
 
-#### 3) TykeVarMerger - Re-align modified reads and merge them
+#### 3) TykeVarMerger - Re-Align Modified Reads and Merge Them
 
 Replace the reads into the original dataset with the modified reads.
 
@@ -133,26 +133,26 @@ In the above cmd:
 * PREFIX is used to define a filename prefix for the output file.
 
 
-#### 4) Run your favorite mosaic variant caller and compare results
+#### 4) Run Your Favorite Mosaic Variant Caller and Compare Results
 
-## Example implementation
+## Example Implementation
 
 ### SpikeVar
 
 Here, we use the SpikeVar workflow to automatically spike in sample HG002 at a 5% concentration into sample HG0733, to result in a 5% mosaic variant allele frequency (VAF). A downside is that the generated mixed .bam file will include 4 haplotype structures which cannot be corrected for. Furthermore, certain variants (e.g. HG002 variants) will not be presented at the targeted VAF. Forexample, heterozygous variants will not be represented by 5% VAF but rather at ~2.5% VAF. To account for this we re-genotype variants and report only variants that should be identifiable at the user-defined threshold or higher VAF.   
 
-#### 1) Fetch data
+#### 1) Fetch Data
 In order to spike-in sample B into sample A, the pipeline first needs an initial set of aligned reads. We used HG002 and HG00733 datasets.
 
 Reads - `ftp://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/data/AshkenazimTrio/HG002_NA24385_son/Ultralong_OxfordNanopore/guppy-V3.2.4_2020-01-22/HG002_hs37d5_ONT-UL_GIAB_20200122.phased.bam` and `ftp://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/data/AshkenazimTrio/HG002_NA24385_son/Ultralong_OxfordNanopore/guppy-V3.2.4_2020-01-22/HG002_hs37d5_ONT-UL_GIAB_20200122.phased.bam.bai`
 
 
-#### 2) SpikeVarDatabaseCreator - Generate spike-in dataset
+#### 2) SpikeVarDatabaseCreator - Generate Spike-in Dataset
 We spiked 5% reads from HG0733 to HG002 for the next part of the workflow.
 ```
 sh spike-in.sh HG002_hs37d5_ONT-UL_GIAB_20200122.phased.bam HG007733.bam 0.05 /software/bin/samtools /software/bin/mosdepth /output `pwd`/calculate_ratio.py
 ```
-#### 3) SpikeVarReporter
+#### 3) SpikeVarReporter - Filter Reads with >5% Variant Allele Frequency After Recalculation
 After creating the new BAM file from e.g. HG002 and HG00733, we have to re-calculate the variant allele frequency (VAF) for all variants.
 First we merge both VCF files from e.g. HG002 and HG00733 with bcftools. Depending on the variants we either start a SNV or SV caller, which can recalculate the VAF of each variant. 
 For SNVs we are using bcftools mpileup. For SVs and short read data we are using Paragraph from Illumina and for long read data Sniffles2 is used.
@@ -161,21 +161,23 @@ For SNVs we are using bcftools mpileup. For SVs and short read data we are using
 ./2b_re-genotyping_main.sh SV 0.05 HG002_SV.Tier1.vcf HG00377_SV.Tier1.vcf SPIKED.BAM ./ LONG
 ```
 
-#### 4) Run your favorite mosaic variant caller
+#### 4) Run Your Favorite Mosaic Variant Caller
 
 Run you choice of mosaic variant caller on the modified `HG002_ONT_hg37_chr5_HG00733_ONT_hg37_chr5_merged.sorted.bam` file and compare the results with the validation `.vcf` file.
+
+#### 5) Results
 
 Your spiked in reads are now visible in the IGV genome browser. 
  
 <img src="images/Spike_screenshot_sv.png"  align="center"> 
 <p align="center">
-<b>Example of a of a spiked in deletion on chromosome X.</b>
+<b>Example of a of a spiked in deletion.</b>
 </p>
 <br />
 
 <img src="images/Spike_screenshot_sv2_ins.png"  align="center">
 <p align="center">
-<b>Example of a of a spiked in inserton on chromosome 5.</b>
+<b>Example of a of a spiked in inserton.</b>
 </p>  
 
 ### TykeVar
@@ -183,7 +185,7 @@ Your spiked in reads are now visible in the IGV genome browser.
 Here, we use the TykeVar workflow to modifiy reads of HG002 directly at their reference position by including artifical mutations to represent at variant allele frequency of 5%. In contrast to the above approach we do not introduce new haplotypes with this. However, more complex mutations (e.g. rearrangements, duplication or very long structural variants) will not be able to be introduced to the data itself, since the size of the reads is limited.
 
 
-#### 1) Fetch data
+#### 1) Fetch Data
 In order to simulate and edit reads, the pipeline first needs an initial set of aligned reads and a reference. For our demonstration, we will use the GIAB datasets.
 
 Reads - `ftp://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/data/AshkenazimTrio/HG002_NA24385_son/Ultralong_OxfordNanopore/guppy-V3.2.4_2020-01-22/HG002_hs37d5_ONT-UL_GIAB_20200122.phased.bam` and `ftp://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/data/AshkenazimTrio/HG002_NA24385_son/Ultralong_OxfordNanopore/guppy-V3.2.4_2020-01-22/HG002_hs37d5_ONT-UL_GIAB_20200122.phased.bam.bai`
@@ -195,7 +197,7 @@ We run the demonstration on chr22 only, so the dataset is filtered using
 samtools view HG002_hs37d5_ONT-UL_GIAB_20200122.phased.bam 22 > chr22.HG002_hs37d5_ONT-UL_GIAB_20200122.phased.bam
 ```
 
-#### 2) TykeVarSimulator - Generate variants and modified reads
+#### 2) TykeVarSimulator - Generate Variants and Modified Reads
 
 First we decompress the FASTA file.
 ```
@@ -207,14 +209,14 @@ Then we simulate variants
 python vcfgen.py chr22.HG002_hs37d5_ONT-UL_GIAB_20200122.phased.bam hs37d5.fa chr22
 ```
 
-#### 3) TykeVarEditor - Add modified reads back in
+#### 3) TykeVarEditor - Add Modified Reads Back In
 
 Generate a set of modified reads with inserted variants.
 ```
 python main.py -v chr22SV.vcf -b chr22.HG002_hs37d5_ONT-UL_GIAB_20200122.phased.bam -r hs37d5.fa -o chr22.fastq 
 ```
 
-#### 4) TykeVarMerger - Re-align modified reads and merge them
+#### 4) TykeVarMerger - Re-Align Modified Reads and Merge Them
 Once the new reads are generated, they need to be re-aligned and re-inserted back into the dataset by replacing the original reads.
 
 We use `minimap2` for long read alignment and `bwa-mem2` for short reads. In the example, we tested on chromosome 22.
@@ -240,11 +242,11 @@ python filter_merge_bam.py -b chr22.HG002_hs37d5_ONT-UL_GIAB_20200122.phased.bam
     -m mod.chr22.bam -o . --prefix mod_chr22 --primary
 ```
 
-#### 4) Run your favorite mosaic variant caller
+#### 5) Run Your Favorite Mosaic Variant Caller
 
 Run you choice of mosaic variant caller on the modified `mod_chr22.bam` file and compare the results with the simulated `chr22SV.vcf` file.
 
-#### 5) Results
+#### 6) Results
 
 The `mod_chr22.bam` file was run through Sniffles to determine potential mosaic variants. Then the ground truth VCF (chr22SV.vcf) and the VCF from
 Sniffles were both visualized on IGV to get a subjective view of whether the modified reads led to mosaic variants being introduced and detected.
@@ -259,7 +261,7 @@ Below are 2 of several variants that overlapped between the ground truth and cal
 
 ## Method Description 
 
-### 1. SpikeVar - Generation of sequencing data with a low frequencing of reads from another sample
+### 1. SpikeVar - Generation of Sequencing Data With a Low Frequencing of Reads From Another Sample
 [<img src="images/SpikeVarflowchart_updated.png" width="500"/>](workflow1.png)
 <p align="justify">
 <b>SpikeVar workflow, with major steps to assess the sensitivity and accuracy of the mosaic variant callers. (A, B: individual samples, A/B: merged samples, .bam and .vcf: input and output file formats in different steps, Black header boxes: tool or file names, Green header boxes: simulated files or final files used for validation comparisons)</b>
@@ -272,7 +274,7 @@ The SpikeVarReporter then determines VAFs for each variant in the mixed dataset 
  
 To assess a mosaic variant caller’s sensitivity and accuracy, the same mixed dataset is used to call mosaic variants. The output mosaic variant locations and VAFs are then compared to the truth set for validation.  
 
-### 2. TykeVar - Creation of sequencing data with a subset of modified reads
+### 2. TykeVar - Creation of Sequencing Data With a Subset of Modified Reads
 [<img src="images/TykeVar_flowchart_updated.png" width="500"/>](Simulate_Mosaic_Simulation_on_reads_flowchart.png)
 <p align="justify">
 <b>TykeVar workflow, with major steps to assess the sensitivity and accuracy of the mosaic variant callers. (A, B: individual samples, A/B: merged samples, .bam and .vcf: input and output file formats in different steps, Black header boxes: tool or file names, Green header boxes: simulated files or final files used for validation comparisons)</b>
