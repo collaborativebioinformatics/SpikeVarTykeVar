@@ -171,10 +171,11 @@ Your spiked in reads are now visible in the IGV genome browser.
 <p align="center">
 <b><sup>Example of a of a spiked in deletion on chromosome X.</sup></b>
 </p>
+<br />
 
 <img src="images/Spike_screenshot_sv2_ins.png"  align="center">
 <p align="center">
-<b>Example of a of a spiked in inserton on chromosome 5.</b>
+<b><sup>Example of a of a spiked in inserton on chromosome 5.</sup></b>
 </p>  
 
 ### TykeVar
