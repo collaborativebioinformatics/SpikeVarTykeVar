@@ -1,8 +1,8 @@
 # MosaicSim: Simulation of mosaic variants in sequencing data
 
-*MosaicSim includes two simulation workflows called SpikeVar (Spike in Known Exogenous Variants) and TykeVar (Track in Your Key Endogenous Variants), which output sequencing read files with artificial MVs and a ground truth annotation file for the MVs.*
-
 **Hackathon team: Lead: Fritz Sedlazeck - SysAdmins: Xinchang Zheng, Michal Izydorczyk, Chi-Lam Poon, Philippe Sanio, Farhang Jaryani, Joyjit Daw, Divya Kalra - Writers: Erik Stricker, Sontosh Deb**
+
+*MosaicSim provides two simulation workflows which output sequencing read files with artificial mosaic variants and a ground truth annotation file for the mosaic variants for the validation of mosaic variant callers.*
 
 
 ## Table of Contents
