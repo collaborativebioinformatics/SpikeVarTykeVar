@@ -307,7 +307,7 @@ The output of this pipeline is thus a modified BAM and a VCF file which provides
 |<img src="images/Erik Stricker.jpg" width="150"/><br>Erik Stricker|<img src="images/Chi-Lam Poon.jpg" width="150"/><br>Chi-Lam Poon|<img src="images/Philippe Sanio.jpg" width="150"/><br>Philippe Sanio|<img src="images/Xinchang Zheng.jpg" width="150"/><br>Xinchang Zheng|<img src="images/Farhang Jaryani.png" width="150"/><br>Farhang Jaryani|
 |:-:|:-:|:-:|:-:|:-:|
 
-|<img src="images/Joyjit Daw.png" width="150"/><br>Joyjit Daw|<img src="images/Michal Bogumil Izydorczyk.png" width="150"/><br>Michal Izydorczyk|<img src="images/Sontosh K Deb.jpg" width="150"/><br>Sontosh Deb.jpg|<img src="images/Fritz Sedlazeck.jpg" width="150"/><br>Fritz Sedlazeck|<img src="images/Divya Kalrai_placeholder.jpg" width="150"/><br>Divya Kalra|
+|<img src="images/Joyjit Daw.png" width="150"/><br>Joyjit Daw<br><br /> |<img src="images/Michal Bogumil Izydorczyk.png" width="150"/><br>Michal Izydorczyk<br><br /> |<img src="images/Sontosh K Deb.jpg" width="150"/><br>Sontosh Deb<br><br /> |<img src="images/Fritz Sedlazeck.jpg" width="150"/><br>Fritz Sedlazeck<br><br />  |<img src="images/Divya Kalrai_placeholder.jpg" width="150"/><br>Divya Kalra,<br>Adam Alexander|
 |:-:|:-:|:-:|:-:|:-:|
 
 
