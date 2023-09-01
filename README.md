@@ -118,7 +118,7 @@ Note that before running the merge and filter step, the modified reads need to b
 against the original reference.
 
 ```
-usage: filter_merge_bam.py [-b BAM] [-m MOD_BAM] [--primary] [-o OUT_DIR] [--prefix PREFIX]
+python filter_merge_bam.py -b <BAM> -m <MOD_BAM> --primary -o <OUT_DIR> --prefix <PREFIX>
 ```
 
 <img src="images/TykeVarMerger.png"  height="200" align="right">
@@ -130,8 +130,18 @@ In the above cmd:
 * OUT_DIR is the output location for the merged and filtered final BAM.
 * PREFIX is used to define a filename prefix for the output file.
 
-
 #### 4) Run Your Favorite Mosaic Variant Caller and Compare Results
+For SV calling, we tried Sniffles:
+```
+sniffles --input <MOD_MERGED_BAM> --vcf sniffles_out.vcf --mosaic --threads 8
+```
+* MOD_MERGED_BAM is the output bam file from `filter_merge_bam.py`
+
+for SNV calling, we ran longshot:
+```
+longshot --bam <MOD_MERGED_BAM> --ref <REF> --out longshot_out.vcf --min_cov 3
+```
+
 
 ## Example Implementation
 
@@ -251,11 +261,14 @@ Sniffles were both visualized on IGV to get a subjective view of whether the mod
 Below are 2 of several variants that overlapped between the ground truth and caller VCF.
 
 [<img src="images/TykeVarMosaicInsert.png " align="center"/>](TykeVarMosaicInsert.png )  
-<p align="center"><b>An SV insertion.</b></p>
+<p align="center"><b>A mosaic insertion introduced into the reads by modifying a subset of the reads.</b></p>
 <br />
 
 [<img src="images/TykeVarMosaicDel.png " align="center"/>](TykeVarMosaicDel.png )  
-<p align="center"><b>An SV deletion.</b></p>
+<p align="center"><b>iA mosaic deletion introduced into the reads by modifying a subset of the reads.</b></p>
+
+[<img src="images/TykeVarMosaicSNP.png " align="center"/>](TykeVarMosaicSNP.png )  
+<p align="center"><b>A mosaic SNP introduced into the reads by modifying a subset of the reads.</b></p>
 
 ## Method Description 
 
