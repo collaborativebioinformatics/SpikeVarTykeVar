@@ -25,7 +25,7 @@ OUTPUT_VCF_FILTERED="${OUTPUT_DIR}/output_genotypes_filtered.vcf"
 REFERENCE=${8}
 
 # Merge the two VCF files with bcf tools
-bcftools merge $VCF_1 $VCF_2 -o $MERGED_VCF --use-header
+bcftools merge $VCF_1 $VCF_2 -o $MERGED_VCF
 
 if [ "$VARIANT" = "SNV" ]; then
     echo "Input is 'SNV'"
