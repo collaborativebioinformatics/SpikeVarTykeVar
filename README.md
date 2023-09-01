@@ -94,8 +94,6 @@ ground truth for evaluating mosaic variant callers.
 ```
 python vcfgen.py <path_to_bam> <path_to_ref> <output_path_prefix>
 
-e.g. python vcfgen.py chr22.bam hs37d5.fa chr22
-The above generates a chr22SV.vcf and chr22SNV.vcf file
 ```
 
 #### 2) TykeVarEditor - Generate Edited Reads Based on Simulated VCF
@@ -163,7 +161,7 @@ For SNVs we are using bcftools mpileup. For SVs and short read data we are using
 
 #### 4) Run Your Favorite Mosaic Variant Caller
 
-Run you choice of mosaic variant caller on the modified `HG002_ONT_hg37_chr5_HG00733_ONT_hg37_chr5_merged.sorted.bam` file and compare the results with the validation `.vcf` file.
+Run you choice of mosaic variant caller on the modified `HG002_ONT_hg37_chr5_HG00733_ONT_hg37_chr5_merged.sorted.bam` file and compare the results with the truth set `output_genotypes_filtered.vcf` file.
 
 #### 5) Results
 
