@@ -144,7 +144,7 @@ Reads - `ftp://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/data/AshkenazimT
 
 Reference - `https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/release/references/GRCh37/hs37d5.fa.gz`
 
-#### 2) Generate variants and modified reads
+#### 2) TykeVarSimulator - Generate variants and modified reads
 
 First we decompress the FASTA file.
 ```
@@ -156,12 +156,14 @@ Then we simulate variants
 python vcfgen.py HG002_hs37d5_ONT-UL_GIAB_20200122.phased.bam hs37d5.fa hg002
 ```
 
+#### 3) TykeVarEditor - Add modified reads back in
+
 Generate a set of modified reads with inserted variants.
 ```
 python main.py -v hg002SV.vcf -b HG002_hs37d5_ONT-UL_GIAB_20200122.phased.bam -r hs37d5.fa -o hg002_modified_reads.fastq
 ```
 
-#### 3) Re-align modified reads and merge them
+#### 4) TykeVarMerger - Re-align modified reads and merge them
 Once the new reads are generated, they need to be re-aligned and re-inserted back into the dataset by replacing the original reads.
 
 We use `minimap2` for long read alignment and `bwa-mem2` for short reads. In the example, we tested on chromosome 22.
