@@ -15,4 +15,5 @@ baseline_subsample_bampath=${output_dirpath}/${baseline_prefix}"_"${baseline_rat
 spikein_subsample_bampath=${output_dirpath}/${spikein_prefix}"_"${spikein_ratio}.bam
             
 ${samtools_path} merge -r -o ${output_dirpath}/${baseline_prefix}"_"${spikein_prefix}"_merged.bam" -@ ${threads} ${baseline_subsample_bampath} ${spikein_subsample_bampath}
-${samtools_path} index ${output_dirpath}/${baseline_prefix}"_"${spikein_prefix}"_merged.bam"
+${samtools_path} sort -o ${output_dirpath}/${baseline_prefix}"_"${spikein_prefix}"_merged.sorted.bam" -@ ${threads} ${output_dirpath}/${baseline_prefix}"_"${spikein_prefix}"_merged.bam"
+${samtools_path} index ${output_dirpath}/${baseline_prefix}"_"${spikein_prefix}"_merged.sorted.bam"
