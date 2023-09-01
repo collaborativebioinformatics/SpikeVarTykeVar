@@ -2,8 +2,9 @@
 
 ## Contributers
 
-Meet SpikeVar and TykeVar:  
+Meet SpikeVar and TykeVar:   
 
+https://github.com/collaborativebioinformatics/SVHack_simulatemosaic/assets/37314125/4d0dfe58-501c-4ee8-99ea-ff3411e23b4f
 
 ## Background
 
@@ -52,8 +53,6 @@ Here, we use the TykeVar workflow to modifiy reads of HG002 directly at their re
 
 <a id="6">[6]</a> Poplin R, Chang PC, Alexander D, Schwartz S, Colthurst T, Ku A, Newburger D, Dijamco J, Nguyen N, Afshar PT, Gross SS, Dorfman L, McLean CY, DePristo MA. A universal SNP and small-indel variant caller using deep neural networks. Nat Biotechnol. 2018;36(10):983-7. Epub 20180924. doi: 10.1038/nbt.4235. PubMed PMID: 30247488.
 
-
-## SpikeVar and TykeVar Bark
 
 
 
