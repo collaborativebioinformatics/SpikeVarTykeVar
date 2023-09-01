@@ -13,7 +13,7 @@ In the context of individual genome comparison, mutations that appear within a s
 ## Method Description 
 
 ### 1. SpikeVar - Generation of sequencing data with a low frequencing of reads from another sample
-[<img src="images/SpikeVar_flowchart_updated.png" width="500"/>](workflow1.png)
+[<img src="images/SpikeVarflowchart_updated.png" width="500"/>](workflow1.png)
 
 The SpikeVar workflow outputs a mixed sequencing read dataset in .bam format containing reads from one dominant sample and reads from another sample spiked in at a user defined ratio corresponding to the simulated mosaic variant allele frequency (VAF) together with a .vcf file annotating the confirmed mosaic variant locations within the mixed dataset. The SpikeVarDatasetCreator takes aligned sequencing reads from sample A and sample B as the initial input. In this step, a spike-in methodology is applied to strategically introduce x% of mutations from one sample to another using <insert tool>. Accordingly, sample A is first down-sampled to retain 100-x% of its original reads, then sample B is down-sampled to x% considering the coverage differences between the samples. Using <insert tool>, both down-sampled datasets are then merged to create a mixed dataset that represents a sequence read dataset with mosaic variants, including structural variations (SVs), single nucleotide variations (SNVs), and insertions/deletions (indels).  
 
