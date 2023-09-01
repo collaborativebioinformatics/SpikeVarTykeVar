@@ -171,13 +171,13 @@ Your spiked in reads are now visible in the IGV genome browser.
  
 <img src="images/Spike_screenshot_sv.png"  align="center"> 
 <p align="center">
-<b>Example of a of a spiked in deletion.</b>
+<b>Example f a spiked in deletion.</b>
 </p>
 <br />
 
 <img src="images/Spike_screenshot_sv2_ins.png"  align="center">
 <p align="center">
-<b>Example of a of a spiked in inserton.</b>
+<b>Example of a spiked in inserton.</b>
 </p>  
 
 ### TykeVar
