@@ -8,7 +8,7 @@ Meet SpikeVar and TykeVar:
 
 ## Background
 
-When comparing genomes of individuals, mutations that appear within a small fraction of the population (<5%) are considered rare variants. However, when assessing a population of cells from a tissue of the same individual, rare variants only present in a small fraction of the cells are called a mosaic variants (MVs). MVs are a challenging to identify because they are mixed in with data from the non-mutated cells and present in the same sequencing file. Therefore, several pipelines have been developed to extract these MVs from whole genome sequencing data. To benchmark and validate the efficiency and accuracy of these methods, sequencing files with known MVs are necessary. We developed two simulation workflows called SpikeVar (**Sp**ike **i**n **K**nown **E**xogenous **Var**iants) and TykeVar (**T**aylor in **Y**our **K**ey **E**ndogenous **Var**iants), which output sequencing read files with artificial MVs and a ground truth annotation file for the MVs. SpikeVar accomplishes this by spiking in real reads from a sample at user defined ratio into the sequencing file from a second sample. In contrast, TykeVar creates a list of random mutations and modifies a fraction of existing reads to match the user defined MV frequency.
+In the context of individual genome comparison, mutations that appear within a small fraction of the population (<5%) are considered uncommon variants[[1]](#1). When assessing a population of cells from a tissue of the same individual in turn, uncommon variants only present in a small fraction of the cells are defined as a mosaic variants (MVs)[[2]](#2)[PMID: 32371413]. Recent studies have shown that there are potential disease association of for certain MVs[[3]](#3)[PMID: 32371413]. However, MVs are a challenging to detect because they are mixed in with data from the non-mutated cells and present in the same sequencing file. Therefore, several pipelines have been developed or adjusted to extract mosaic single nucleotide, structural or indel variants from whole genome sequencing data such as Sniffles[[4]](#4) [PMID: 29713083], DeepMosaic[[5](#5) [PMID: 36593400], Mutect2[[6]](#6) [PMID: 20644199], DeepVariant[[7]](#7) [PMID: 30247488]. To benchmark and validate the efficiency and accuracy of these methods, sequencing files with known MVs are necessary. We developed two simulation workflows called SpikeVar (Spike in Known Exogenous Variants) and TykeVar (Track in Your Key Endogenous Variants), which output sequencing read files with artificial MVs and a ground truth annotation file for the MVs. SpikeVar accomplishes this by spiking in real reads from a sample at user defined ratio into the sequencing file from a second sample. In contrast, TykeVar creates a list of random mutations and modifies a fraction of existing reads to match the user defined MV frequency.
 
 ## Method Description 
 
@@ -27,3 +27,12 @@ To get started, please refer to the [Tyke README](scripts/Tyke/README.md).
 ## Installation
 
 ## Example Implementation
+
+## References
+
+<a id="1">[1]</a> 
+Sariya S, Lee JH, Mayeux R, Vardarajan BN, Reyes-Dumeyer D, Manly JJ, Brickman AM, Lantigua R, Medrano M, Jimenez-Velazquez IZ, Tosto G. Rare Variants Imputation in Admixed Populations: Comparison Across Reference Panels and Bioinformatics Tools. Front Genet. 2019;10:239. Epub 20190403. doi: 10.3389/fgene.2019.00239. PubMed PMID: 31001313; PMCID: PMC6456789.
+<a id="2">[2]</a> 
+Miller CR, Lee K, Pfau RB, Reshmi SC, Corsmeier DJ, Hashimoto S, Dave-Wala A, Jayaraman V, Koboldt D, Matthews T, Mouhlas D, Stein M, McKinney A, Grossman T, Kelly BJ, White P, Magrini V, Wilson RK, Mardis ER, Cottrell CE. Disease-associated mosaic variation in clinical exome sequencing: a two-year pediatric tertiary care experience. Cold Spring Harb Mol Case Stud. 2020;6(3). Epub 20200612. doi: 10.1101/mcs.a005231. PubMed PMID: 32371413; PMCID: PMC7304353.
+
+
