@@ -30,6 +30,9 @@ where `$REPO_ROOT` is the root folder of the repository.
 
 #### 1) Generate simulated VCF
 
+<img src="images/TykeVarSimulator.png" width="150" height="150" align="right">
+
+
 The VCF simulator generates a random set of mosaic variants (SNVs and SVs). The variants
 can be parameterized with VAF, number of variants to simulate and the size of the variations.
 The generated file is in the Sniffles VCF format.
