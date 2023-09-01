@@ -1,10 +1,4 @@
 #!/bin/bash
-#SBATCH --job-name=subsample
-#SBATCH --tasks-per-node=10
-#SBATCH --mem=30gb
-#SBATCH --time=3:00:00
-#SBATCH --partition=medium
-#SBATCH --account=proj-fs0002
 
 # params
 bampath=$1

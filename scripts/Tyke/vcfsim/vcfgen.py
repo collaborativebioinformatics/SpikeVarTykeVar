@@ -5,18 +5,62 @@ maxAF=0.25  # maximum allele frequency SV
 minAFsnp=0.05   # minimum allele frequency SNV   
 maxAFsnp=0.25   # maximum allele frequency SNV
 file='/stornext/snfs5/next-gen/scratch/zhengxc/hackton/HG002_ONT.bam'   # source bam to simulate SVs from
-nosv=100 # no of SVs to simulate
-nosnv=500 # no of SNVs to simulate
+nosv=50 # no of SVs to simulate
+nosnv=200 # no of SNVs to simulate
 minsvl=50 # minimum SV length
 maxsvl=10000 # maximum SV length
 maxsnp=10 # maximum size of indel SNV
-sub=0.9 # probability of producing a SNP vs indel in SNV
+sub=0.7 # probability of producing a SNP vs indel in SNV
 insdelsnv=0.5   # probability of producing INS vs DEL in SNV
 insdel=0.7 # probability of producing INS vs DEL in SV
-SVvcf="HackatlonSV.vcf" # name of output vcf file for SV
-SNVvcf="HackatlonSNV.vcf" # name of output vcf file for SNV
+SVvcf="HackatlonSV20.vcf" # name of output vcf file for SV
+SNVvcf="HackatlonSNV20.vcf" # name of output vcf file for SNV
 
 def genloc(no,file,mincov=20):
+    from numpy import random as nran
+    from pysam import depth
+    result=[]
+    chromol={
+        "1":249250621,
+        "2":243199373,
+        "3":198022430,
+        "4":191154276,
+        "5":180915260,
+        "6":171115067,
+        "7":159138663,
+        "8":146364022,
+        "9":141213431,
+        "10":135534747,
+        "11":135006516,
+        "12":133851895,
+        "13":115169878,
+        "14":107349540,
+        "15":102531392,
+        "16":90354753,
+        "17":81195210,
+        "18":78077248,
+        "19":59128983,
+        "20":63025520,
+        "21":48129895,
+        "22":51304566,
+        "X":155270560,
+        "Y":59373566
+    }
+    chrom=tuple(["22"])
+    locations=[]
+    for i in range(no):
+        while True:
+            ranchrom=nran.choice(chrom)
+            loc=str(nran.randint(0,chromol[ranchrom]))
+            try:
+	            cover=int(depth(file,'-r',ranchrom+":"+loc+"-"+loc).rstrip("\n").split("\t")[-1])
+            except ValueError:
+                continue
+            if cover>=mincov:
+                break
+        locations.append(tuple([ranchrom,loc,cover]))
+    return tuple(locations)
+def genlocSV(no,file,mincov=20):
     from numpy import random as nran
     from pysam import depth
     result=[]
@@ -52,6 +96,9 @@ def genloc(no,file,mincov=20):
         while True:
             ranchrom=nran.choice(chrom)
             loc=str(nran.randint(0,chromol[ranchrom]))
+            for i in locations:
+                if i[0]==ranchrom and abs(int(i[1]))-int(loc)<50000:
+                    continue
             try:
 	            cover=int(depth(file,'-r',ranchrom+":"+loc+"-"+loc).rstrip("\n").split("\t")[-1])
             except ValueError:
@@ -130,7 +177,7 @@ def main():
     from numpy.random import choice
     from random import uniform
 
-    svloc=genloc(nosv,file,ceil(1/minAF))
+    svloc=genlocSV(nosv,file,ceil(1/minAF))
     snvloc=genloc(nosnv,file,ceil(1/minAF))
     #print(snvloc)
     vcfsv=['##fileformat=VCFv4.2','##ALT=<ID=INS,Description="Insertion">','##ALT=<ID=DEL,Description="Deletion">','##FORMAT=<ID=GT,Number=1,Type=String,Description="Genotype">','##FILTER=<ID=PASS,Description="All filters passed">','##INFO=<ID=PRECISE,Number=0,Type=Flag,Description="Structural variation with precise breakpoints">','##INFO=<ID=SVTYPE,Number=1,Type=String,Description="Type of structural variation">'

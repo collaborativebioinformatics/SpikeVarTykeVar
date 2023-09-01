@@ -1,10 +1,4 @@
 #!/bin/bash
-#SBATCH --job-name=merge
-#SBATCH --tasks-per-node=10
-#SBATCH --mem=16gb
-#SBATCH --time=3-00:00:00
-#SBATCH --partition=medium
-#SBATCH --account=proj-fs0002
 
 # params
 baseline_prefix=$1

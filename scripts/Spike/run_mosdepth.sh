@@ -1,10 +1,4 @@
 #!/bin/bash
-#SBATCH --job-name=mosdepth
-#SBATCH --tasks-per-node=8
-#SBATCH --mem=16gb
-#SBATCH --time=3:00:00
-#SBATCH --partition=medium
-#SBATCH --account=proj-fs0002
 
 # params
 bampath=$1
