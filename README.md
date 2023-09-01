@@ -1,39 +1,22 @@
-# SpikeVar and TykeVar
+# MosaicSim: Simulation of mosaic variants in sequencing data
 
-https://github.com/collaborativebioinformatics/SVHack_simulatemosaic/assets/37314125/4d0dfe58-501c-4ee8-99ea-ff3411e23b4f  
+<video src="https://github.com/collaborativebioinformatics/SVHack_simulatemosaic/assets/37314125/4d0dfe58-501c-4ee8-99ea-ff3411e23b4f" width="200" height="200" align="right">
 
-Spike and Tyke
-
-## Contributers
-
-
-|<img src="images/Erik Stricker.jpg" width="150"/><br>Erik Stricker|<img src="images/Chi-Lam Poon.jpg" width="150"/><br>Chi-Lam Poon|<img src="images/Philippe Sanio.jpg" width="150"/><br>Philippe Sanio|<img src="images/Xinchang Zheng.jpg" width="150"/><br>Xinchang Zheng|<img src="images/Farhang Jaryani.png" width="150"/><br>Farhang Jaryani|
-|:-:|:-:|:-:|:-:|:-:|
-
-|<img src="images/Joyjit Daw.png" width="150"/><br>Joyjit Daw|<img src="images/Michal Bogumil Izydorczyk.png" width="150"/><br>Michal Izydorczyk|<img src="images/Sontosh K Deb.jpg" width="150"/><br>Sontosh Deb.jpg|<img src="images/Fritz Sedlazeck.jpg" width="150"/><br>Fritz Sedlazeck|<img src="images/Divya Kalra.jpg" width="150"/><br>Divya Kalra|
-|:-:|:-:|:-:|:-:|:-:|
+### Table of Contents
+1. [Background](#background)
+2. [Installation](#installation)
+3. [How to use it](#how-to-use-it)
+4. [Example implementation](#example-implementation)
+5. [Method Description](#method-description )
+6. [Contributers](#contributers)
+7. [References](#references)
+<br>
 
 
 ## Background
 
 In the context of individual genome comparison, mutations that appear within a small fraction of the population (<5%) are considered uncommon variants[<sup>1</sup>](#1). When assessing a population of cells from a tissue of the same individual in turn, uncommon variants only present in a small fraction of the cells are defined as a mosaic variants (MVs)[<sup>2</sup>](#2). Recent studies have shown that there are potential disease association of for certain MVs[<sup>2</sup>](#2). However, MVs are a challenging to detect because they are mixed in with data from the non-mutated cells and present in the same sequencing file. Therefore, several pipelines have been developed or adjusted to extract mosaic single nucleotide, structural or indel variants from whole genome sequencing data such as Sniffles[<sup>3</sup>](#3), DeepMosaic[<sup>4</sup>](#4), Mutect2[<sup>5</sup>](#5), DeepVariant[<sup>6</sup>](#6). To benchmark and validate the efficiency and accuracy of these methods, sequencing files with known MVs are necessary. We developed two simulation workflows called SpikeVar (Spike in Known Exogenous Variants) and TykeVar (Track in Your Key Endogenous Variants), which output sequencing read files with artificial MVs and a ground truth annotation file for the MVs. SpikeVar accomplishes this by spiking in real reads from a sample at user defined ratio into the sequencing file from a second sample. In contrast, TykeVar creates a list of random mutations and modifies a fraction of existing reads to match the user defined MV frequency.
 
-## Method Description 
-
-### 1. SpikeVar - Generation of sequencing data with a low frequencing of reads from another sample
-[<img src="images/SpikeVarflowchart_updated.png" width="500"/>](workflow1.png)
-
-The SpikeVar workflow outputs a mixed sequencing read dataset in .bam format containing reads from one dominant sample and reads from another sample spiked in at a user defined ratio corresponding to the simulated mosaic variant allele frequency (VAF) together with a .vcf file annotating the confirmed mosaic variant locations within the mixed dataset. The SpikeVarDatasetCreator takes aligned sequencing reads from sample A and sample B as the initial input. In this step, a spike-in methodology is applied to strategically introduce x% of mutations from one sample to another using <insert tool>. Accordingly, sample A is first down-sampled to retain 100-x% of its original reads, then sample B is down-sampled to x% considering the coverage differences between the samples. Using <insert tool>, both down-sampled datasets are then merged to create a mixed dataset that represents a sequence read dataset with mosaic variants, including structural variations (SVs), single nucleotide variations (SNVs), and insertions/deletions (indels).  
-
-The SpikeVarReporter then determines VAFs for each variant in the mixed dataset using <insert tool> based on the mixed variant locations derived by merging the .vcf files from sample A and sample B using <insert tool>. Variants with VAFs exceeding or equal to the introduced mutations (i.e., x%) are then selected to create a truth set for benchmarking using <insert tool>.  
- 
-To assess a mosaic variant caller’s sensitivity and accuracy, the same mixed dataset is used to call mosaic variants. The output mosaic variant locations and VAFs are then compared to the truth set for validation.  
-
-## 2. TykeVar- Creation of sequencing data with a subset of modified reads
-[<img src="images/TykeVar_flowchart_updated.png" width="500"/>](Simulate_Mosaic_Simulation_on_reads_flowchart.png)
-
-
-To get started, please refer to the [Tyke README](scripts/Tyke/README.md).
 
 ## Installation
 
@@ -76,7 +59,7 @@ corresponding to a particular variant location are edited. This is determined by
 The output FASTQ file has the edited reads. The query name of each read is kept the same.
 
 
-## Example Implementation
+## Example implementation
 
 ### SpikeVar
 
@@ -120,6 +103,33 @@ TODO:
 #### 4) Run your favorite mosaic variant caller
 
 TODO:
+
+## Method Description 
+
+### 1. SpikeVar - Generation of sequencing data with a low frequencing of reads from another sample
+[<img src="images/SpikeVarflowchart_updated.png" width="500"/>](workflow1.png)
+
+The SpikeVar workflow outputs a mixed sequencing read dataset in .bam format containing reads from one dominant sample and reads from another sample spiked in at a user defined ratio corresponding to the simulated mosaic variant allele frequency (VAF) together with a .vcf file annotating the confirmed mosaic variant locations within the mixed dataset. The SpikeVarDatasetCreator takes aligned sequencing reads from sample A and sample B as the initial input. In this step, a spike-in methodology is applied to strategically introduce x% of mutations from one sample to another using <insert tool>. Accordingly, sample A is first down-sampled to retain 100-x% of its original reads, then sample B is down-sampled to x% considering the coverage differences between the samples. Using <insert tool>, both down-sampled datasets are then merged to create a mixed dataset that represents a sequence read dataset with mosaic variants, including structural variations (SVs), single nucleotide variations (SNVs), and insertions/deletions (indels).  
+
+The SpikeVarReporter then determines VAFs for each variant in the mixed dataset using <insert tool> based on the mixed variant locations derived by merging the .vcf files from sample A and sample B using <insert tool>. Variants with VAFs exceeding or equal to the introduced mutations (i.e., x%) are then selected to create a truth set for benchmarking using <insert tool>.  
+ 
+To assess a mosaic variant caller’s sensitivity and accuracy, the same mixed dataset is used to call mosaic variants. The output mosaic variant locations and VAFs are then compared to the truth set for validation.  
+
+### 2. TykeVar- Creation of sequencing data with a subset of modified reads
+[<img src="images/TykeVar_flowchart_updated.png" width="500"/>](Simulate_Mosaic_Simulation_on_reads_flowchart.png)
+
+
+To get started, please refer to the [Tyke README](scripts/Tyke/README.md).
+
+## Contributers
+
+
+|<img src="images/Erik Stricker.jpg" width="150"/><br>Erik Stricker|<img src="images/Chi-Lam Poon.jpg" width="150"/><br>Chi-Lam Poon|<img src="images/Philippe Sanio.jpg" width="150"/><br>Philippe Sanio|<img src="images/Xinchang Zheng.jpg" width="150"/><br>Xinchang Zheng|<img src="images/Farhang Jaryani.png" width="150"/><br>Farhang Jaryani|
+|:-:|:-:|:-:|:-:|:-:|
+
+|<img src="images/Joyjit Daw.png" width="150"/><br>Joyjit Daw|<img src="images/Michal Bogumil Izydorczyk.png" width="150"/><br>Michal Izydorczyk|<img src="images/Sontosh K Deb.jpg" width="150"/><br>Sontosh Deb.jpg|<img src="images/Fritz Sedlazeck.jpg" width="150"/><br>Fritz Sedlazeck|<img src="images/Divya Kalra.jpg" width="150"/><br>Divya Kalra|
+|:-:|:-:|:-:|:-:|:-:|
+
 
 ## References
 
