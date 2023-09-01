@@ -83,7 +83,7 @@ then
             if [ $? -eq 0 ]
             then
                 merge_jobid=`echo ${merge_submission} | awk '{print $4}'`
-                merge_bampath=${output_dirpath}/${baseline_prefix}"_"${spikein_prefix}"_merged.bam"
+                merge_bampath=${output_dirpath}/${baseline_prefix}"_"${spikein_prefix}"_merged.sorted.bam"
                 merge_prefix=`basename ${merge_bampath} .bam`
                 
                 subsample_mosdepth_submission=$(sbatch --chdir ${output_dirpath} --mail-type FAIL \
