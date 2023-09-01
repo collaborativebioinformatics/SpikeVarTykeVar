@@ -32,7 +32,19 @@ conda create -n mosaicSim python=3.10
 
 conda activate mosaicSim
 ```
+## Dependencies
 
+### SpikeVar
+- mosdepth 0.3.2
+- samtools 1.15.1
+- Python 3.6.8
+- bcftools
+- Paragraph 2.4a
+- 
+### TykeVar
+- pysam (0.21.0) 
+- numpy (1.25.2)
+- biopython (1.81)
 
 ## How to use it
 
