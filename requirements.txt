@@ -5,3 +5,4 @@ samtools
 sniffles
 bcftools
 numpy
+clair3 ## snv detection - simulation still in progress as of now
