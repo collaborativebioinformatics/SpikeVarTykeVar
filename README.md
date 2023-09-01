@@ -1,20 +1,19 @@
 # MosaicSim: Simulation of mosaic variants in sequencing data
 
+**Hackathon team: Lead: Fritz Sedlazeck - Developers: Xinchang Zheng, Michal Izydorczyk, Chi-Lam Poon, Philippe Sanio, Farhang Jaryani, Joyjit Daw, Divya Kalra - Writers: Erik Stricker, Sontosh Deb**
+
+*MosaicSim provides two simulation workflows which output sequencing read files with artificial mosaic variants and a ground truth mosaic variantannotation file for the validation of mosaic variant callers.*
+
 
 ## Table of Contents
-|1. [Background](#background)
-2. [Installation](#installation)
-3. [How to use it](#how-to-use-it)
-4. [Example implementation](#example-implementation)
-5. [Method Description](#method-description)
-6. [Contributers](#contributers)<br>7. [References](#references)|<video src="https://github.com/collaborativebioinformatics/SVHack_simulatemosaic/assets/37314125/4d0dfe58-501c-4ee8-99ea-ff3411e23b4f" width="200" height="200" align="right">|
-|:------:|:-:|
+|1. [Background](#background)<br>2. [Installation](#installation)<br>3. [How to use it](#how-to-use-it)<br>4. [Example implementation](#example-implementation)<br>5. [Method Description](#method-description)<br>6. [Contributers](#contributers)<br>7. [References](#references))<br><img width=1000/>|<video src="https://github.com/collaborativebioinformatics/SVHack_simulatemosaic/assets/37314125/4d0dfe58-501c-4ee8-99ea-ff3411e23b4f" width="200" height="200" align="right">|
+|:------|-:|
 
 
 
 ## Background
 
-In the context of individual genome comparison, mutations that appear within a small fraction of the population (<5%) are considered uncommon variants[<sup>1</sup>](#1). When assessing a population of cells from a tissue of the same individual in turn, uncommon variants only present in a small fraction of the cells are defined as a mosaic variants (MVs)[<sup>2</sup>](#2). Recent studies have shown that there are potential disease association of for certain MVs[<sup>2</sup>](#2). However, MVs are a challenging to detect because they are mixed in with data from the non-mutated cells and present in the same sequencing file. Therefore, several pipelines have been developed or adjusted to extract mosaic single nucleotide, structural or indel variants from whole genome sequencing data such as Sniffles[<sup>3</sup>](#3), DeepMosaic[<sup>4</sup>](#4), Mutect2[<sup>5</sup>](#5), DeepVariant[<sup>6</sup>](#6). To benchmark and validate the efficiency and accuracy of these methods, sequencing files with known MVs are necessary. We developed two simulation workflows called SpikeVar (Spike in Known Exogenous Variants) and TykeVar (Track in Your Key Endogenous Variants), which output sequencing read files with artificial MVs and a ground truth annotation file for the MVs. SpikeVar accomplishes this by spiking in real reads from a sample at user defined ratio into the sequencing file from a second sample. In contrast, TykeVar creates a list of random mutations and modifies a fraction of existing reads to match the user defined MV frequency.
+In the context of individual genome comparison, mutations that appear within a small fraction of the population (<5%) are considered uncommon variants[<sup>1</sup>](#1). When assessing a population of cells from a tissue of the same individual in turn, uncommon variants only present in a small fraction of the cells are defined as a mosaic variants (MVs)[<sup>2</sup>](#2). Recent studies have shown that there are potential disease association of for certain MVs[<sup>2</sup>](#2). However, MVs are a challenging to detect because they are mixed in with data from the non-mutated cells and present in the same sequencing file. Therefore, several pipelines have been developed or adjusted to extract mosaic single nucleotide, structural or indel variants from whole genome sequencing data such as Sniffles[<sup>3</sup>](#3), DeepMosaic[<sup>4</sup>](#4), Mutect2[<sup>5</sup>](#5), DeepVariant[<sup>6</sup>](#6). To benchmark and validate the efficiency and accuracy of these methods, sequencing files with known MVs are necessary. We developed two simulation workflows called SpikeVar (*Sp*ike *i*n *K*nown *E*xogenous *Var*iants) and TykeVar (*T*rack in *Y*our *K*ey *E*ndogenous *Var*iants), which output sequencing read files with artificial MVs and a ground truth annotation file for the MVs. SpikeVar accomplishes this by spiking in real reads from a sample at user defined ratio into the sequencing file from a second sample. In contrast, TykeVar creates a list of random mutations and modifies a fraction of existing reads to match the user defined MV frequency.
 
 
 ## Installation
@@ -30,6 +29,9 @@ where `$REPO_ROOT` is the root folder of the repository.
 ### TykeVar
 
 #### 1) Generate simulated VCF
+
+<img src="images/TykeVarSimulator.png"  height="100" align="right">
+
 
 The VCF simulator generates a random set of mosaic variants (SNVs and SVs). The variants
 can be parameterized with VAF, number of variants to simulate and the size of the variations.
@@ -48,9 +50,12 @@ The above generates a chr22SV.vcf and chr22SNV.vcf file
 
 #### 2) Generate edited reads based on simulated VCF
 
+
 ```
 python main.py -v <SIMULATED_VCF> -b <BAM> -r <REF> -o <OUTPUT_FASTQ>
 ```
+
+<img src="images/TykeVarEditor.png"  height="200" align="right">
 
 This command above takes in the VCF which determines which variants to introduce into the reads.
 The BAM file is used to find the reads which overlap with variant locations. Only a subset of the reads
