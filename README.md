@@ -169,7 +169,7 @@ Your spiked in reads are now visible in the IGV genome browser.
  
 <img src="images/Spike_screenshot_sv.png"  align="center"> 
 <p align="center">
-<b><font size="8">Example of a of a spiked in deletion on chromosome X.</font></b>
+<b><font size="7">Example of a of a spiked in deletion on chromosome X.</font></b>
 </p>
 
 <img src="images/Spike_screenshot_sv2_ins.png"  align="center">
