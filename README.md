@@ -106,7 +106,14 @@ The output FASTQ file has the edited reads. The query name of each read is kept 
 
 #### 3) TykeVarMerger - Re-align modified reads and merge them
 
+After creating the modified BAM file we have to re-calculate the variant allele frequency (VAF) for all variants.
+First all variants stored from both VCF files need to be merged and the VAF needs to be recalculated. 
+Depending on the variants we either start a SNV or SV caller, which can recalculate the VAF of each variant. 
+For SNVs we are using bcftools mpileup. For SVs and short read data we are using Paragraph from Illumina and for long read data Sniffles2 is used.
 
+```
+./2b_re-genotyping_main.sh VARIANT VAF VCF_1 VCF_2 MODIFIED_BAM OUTPUT_DIR, READ_LENGTH
+```
 
 <img src="images/TykeVarMerger.png"  height="200" align="right">
 
