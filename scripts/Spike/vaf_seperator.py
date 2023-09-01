@@ -4,7 +4,7 @@ import sys
 
 def main(input_file:str,VAF:float, output_file:str):
     # Input vcf file
-    vcf_file = rf'input_file'
+    vcf_file = rf'{input_file}'
     df = pd.read_csv(vcf_file, sep='\t', comment='#', header=None)
 
 
@@ -48,7 +48,7 @@ def main(input_file:str,VAF:float, output_file:str):
     qualified = df_qualified_mod.tolist()
 
 
-    output_file = rf'{output_file}}'
+    output_file = rf'{output_file}'
     # write the qualified lines to a new vcf file
     with open(output_file, 'w') as f:
         f.writelines(comments)
