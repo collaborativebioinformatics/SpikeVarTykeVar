@@ -56,5 +56,6 @@ Here, we use the TykeVar workflow to modifiy reads of HG002 directly at their re
 
 ## SpikeVar and TykeVar Bark
 
-[bark](audio/Baby_bulldog.mp3)
+<video src='Baby_bulldog.mov'>
+[bark](audio/Baby_bulldog.mov)
 
