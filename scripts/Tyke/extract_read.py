@@ -8,11 +8,12 @@ DEBUG = False
 
 def write_fastx_record(fh, id, read, qual):
     if not qual:
-        qual = '~' * len(read)
+        qual = [60] * len(read)
+    qual_str = "".join([chr(v + 33) for v in qual])
     fh.write(f"@{id}\n")
     fh.write(f"{read}\n")
     fh.write("+\n")
-    fh.write(f"{qual}\n")
+    fh.write(f"{qual_str}\n")
 
 
 def edit_read(ref_seq, ref_start, read, quals, cigartuples, variant_pos, variant_length, variant_op, insert_seq):
@@ -69,12 +70,12 @@ def edit_read(ref_seq, ref_start, read, quals, cigartuples, variant_pos, variant
         if variant_op == "INS":
             new_seq = read[:read_var_pos + 1] + insert_seq + read[read_var_pos + 1:]
             if quals:
-                qual_seq = '~' * len(insert_seq)
+                qual_seq = [60] * len(insert_seq)
                 new_qual = quals[:read_var_pos + 1] + qual_seq + quals[read_var_pos + 1:]
         elif variant_op == "SNV":
             new_seq = read[:read_var_pos] + insert_seq + read[read_var_pos+1:]
             if quals:
-                new_qual = quals[:read_var_pos] + '~' + quals[read_var_pos+1:]
+                new_qual = quals[:read_var_pos] + [60] + quals[read_var_pos+1:]
         else:
             new_seq = read[:read_var_pos] + ( read[read_var_pos + variant_length:] if (read_var_pos + variant_length) < len(read) else "")
             if quals:
