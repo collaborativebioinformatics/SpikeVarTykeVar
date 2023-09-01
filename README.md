@@ -1,10 +1,10 @@
 # MosaicSim: Simulation of mosaic variants in sequencing data
 
+*MosaicSim includes two simulation workflows called SpikeVar (Spike in Known Exogenous Variants) and TykeVar (Track in Your Key Endogenous Variants), which output sequencing read files with artificial MVs and a ground truth annotation file for the MVs.*
 
 ## Table of Contents
-|1. [Background](#background)<br>2. [Installation](#installation)<br>3. [How to use it](#how-to-use-it)<br>4. [Example implementation](#example-implementation)&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<br>5. [Method Description](#method-description)<br>6. [Contributers](#contributers)<br>7. [References](#references)|<video src="https://github.com/collaborativebioinformatics/SVHack_simulatemosaic/assets/37314125/4d0dfe58-501c-4ee8-99ea-ff3411e23b4f" width="200" height="200" align="right">|
+|1. [Background](#background)<br>2. [Installation](#installation)<br>3. [How to use it](#how-to-use-it)<br>4. [Example implementation](#example-implementation)<br>5. [Method Description](#method-description)<br>6. [Contributers](#contributers)<br>7. [References](#references))<br><img width=1000/>|<video src="https://github.com/collaborativebioinformatics/SVHack_simulatemosaic/assets/37314125/4d0dfe58-501c-4ee8-99ea-ff3411e23b4f" width="200" height="200" align="right">|
 |:------|-:|
-|<img width=1000/>|<img width=200/>|
 
 
 
