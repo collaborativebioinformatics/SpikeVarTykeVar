@@ -26,6 +26,14 @@ pip install -r $REPO_ROOT/requirements.txt
 ```
 where `$REPO_ROOT` is the root folder of the repository.
 
+Installing two conda environments with python 3.10
+```
+conda create -n mosaicSim python=3.10
+
+conda activate mosaicSim
+```
+
+
 ## How to use it
 
 ### TykeVar
