@@ -273,7 +273,7 @@ Below are 2 of several variants that overlapped between the ground truth and cal
 ## Method Description 
 
 ### 1. SpikeVar - Generation of Sequencing Data With a Low Frequencing of Reads From Another Sample
-[<img src="images/SpikeVarflowchart_updated.png" width="500"/>](workflow1.png)
+<img src="images/SpikeVarflowchart_updated.png" width="500"/>
 <p align="justify">
 <b>SpikeVar workflow, with major steps to assess the sensitivity and accuracy of the mosaic variant callers. (A, B: individual samples, A/B: merged samples, .bam and .vcf: input and output file formats in different steps, Black header boxes: tool or file names, Green header boxes: simulated files or final files used for validation comparisons)</b>
 </p>  
@@ -286,7 +286,7 @@ The SpikeVarReporter then determines VAFs for each variant in the mixed dataset 
 To assess a mosaic variant caller’s sensitivity and accuracy, the same mixed dataset is used to call mosaic variants. The output mosaic variant locations and VAFs are then compared to the truth set for validation.  
 
 ### 2. TykeVar - Creation of Sequencing Data With a Subset of Modified Reads
-[<img src="images/TykeVar_flowchart_updated.png" width="500"/>](Simulate_Mosaic_Simulation_on_reads_flowchart.png)
+<img src="images/TykeVar_flowchart_updated.png" width="500"/>
 <p align="justify">
 <b>TykeVar workflow, with major steps to assess the sensitivity and accuracy of the mosaic variant callers. (A, B: individual samples, A/B: merged samples, .bam and .vcf: input and output file formats in different steps, Black header boxes: tool or file names, Green header boxes: simulated files or final files used for validation comparisons)</b>
 </p>  
