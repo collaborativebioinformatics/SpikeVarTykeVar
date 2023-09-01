@@ -1,10 +1,4 @@
 #!/bin/bash
-#SBATCH --job-name=calculate-ratio
-#SBATCH --tasks-per-node=1
-#SBATCH --mem=2gb
-#SBATCH --time=2:00:00
-#SBATCH --partition=compute
-#SBATCH --account=proj-fs0002
 
 # params
 baseline_prefix=$1
