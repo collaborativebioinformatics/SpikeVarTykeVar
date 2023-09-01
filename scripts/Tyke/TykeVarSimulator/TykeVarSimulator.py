@@ -159,7 +159,7 @@ def getrefsnp(reffile,snplist=1):
                 else:
                     if analyse==1:
                         data.append(tuple([chromosome,seq]))
-                chromosome=line.lstrip(">").lstrip("chr").rstrip("\n")
+                chromosome=line.lstrip(">").split(" ")[0].lstrip("chr").rstrip("\n")
                 seq=''
                 analyse=0
                 if chromosome in cta:
@@ -191,8 +191,7 @@ def main():
     svloc=genlocSV(nosv,file,ceil(1/minAF))
     snvloc=genloc(nosnv,file,ceil(1/minAF))
     #print(snvloc)
-    vcfsv=['##fileformat=VCFv4.2','##ALT=<ID=INS,Description="Insertion">','##ALT=<ID=DEL,Description="Deletion">','##FORMAT=<ID=GT,Number=1,Type=String,Description="Genotype">','##FILTER=<ID=PASS,Description="All filters passed">','##INFO=<ID=PRECISE,Number=0,Type=Flag,Description="Structural variation with precise breakpoints">','##INFO=<ID=SVTYPE,Number=1,Type=String,Description="Type of structural variation">'
-,'##INFO=<ID=SVLEN,Number=1,Type=Integer,Description="Length of structural variation">','##INFO=<ID=END,Number=1,Type=Integer,Description="End position of structural variation">','##INFO=<ID=AF,Number=1,Type=Float,Description="Allele Frequency">','#CHROM	POS	ID	REF	ALT	QUAL    FILTER	INFO	FORMAT']
+    vcfsv=['##fileformat=VCFv4.2','##ALT=<ID=INS,Description="Insertion">','##ALT=<ID=DEL,Description="Deletion">','##FORMAT=<ID=GT,Number=1,Type=String,Description="Genotype">','##FILTER=<ID=PASS,Description="All filters passed">','##INFO=<ID=PRECISE,Number=0,Type=Flag,Description="Structural variation with precise breakpoints">','##INFO=<ID=SVTYPE,Number=1,Type=String,Description="Type of structural variation">','###INFO=<ID=SVLEN,Number=1,Type=Integer,Description="Length of structural variation">','##INFO=<ID=END,Number=1,Type=Integer,Description="End position of structural variation">','##INFO=<ID=AF,Number=1,Type=Float,Description="Allele Frequency">','#CHROM	POS	ID	REF	ALT	QUAL    FILTER	INFO	FORMAT']
     insertno=1
     delno=1
     for i in svloc:
@@ -211,7 +210,7 @@ def main():
             f.write(i+'\n')
         f.write(tuple(vcfsv)[-1])
     f.close()
-    #print(snvloc)
+    ##print(snvloc)
     vcfsnv=['##fileformat=VCFv4.2','##FILTER=<ID=PASS,Description="All filters passed">','##FORMAT=<ID=GT,Number=1,Type=String,Description="Genotype">','##FORMAT=<ID=AD,Number=R,Type=Integer,Description="Read depth for each allele">','##INFO=<ID=AF,Number=1,Type=Float,Description="Allele Frequency">','#CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO	FORMAT']
     snps=getrefsnp(ref_path,snvloc)
     from math import log
@@ -219,7 +218,7 @@ def main():
     for i in gensnps(maxsnp=maxsnp,sub=sub, snplist=snps):
         AFno=(round(uniform(minAF,maxAF),2))
         readno=ceil(AFno*i[2])
-        vcfsnv.append('chr'+str(i[0])+'\t'+str(i[1])+'\t.\t'+str(i[3])+'\t'+str(i[4])+"\t1500\tPASS\tAF="+str(AFno)+"\tGT:AD\t0/0:"+str(i[2]-readno)+":"+str(readno))
+        vcfsnv.append(str(i[0])+'\t'+str(i[1])+'\t.\t'+str(i[3])+'\t'+str(i[4])+"\t1500\tPASS\tAF="+str(AFno)+"\tGT:AD\t0/0:"+str(i[2]-readno)+":"+str(readno))
     with open(SNVvcf,"w") as f:
         for i in tuple(vcfsnv)[:-1]:
             f.write(i+'\n')
