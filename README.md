@@ -56,5 +56,5 @@ Here, we use the TykeVar workflow to modifiy reads of HG002 directly at their re
 
 ## SpikeVar and TykeVar Bark
 
-<iframe src="audio/halloween_theme.mp3" allow="autoplay" style="display:none" id="iframeAudio"></iframe>
+[bark](audio/Baby_bulldog.mp3)
 
