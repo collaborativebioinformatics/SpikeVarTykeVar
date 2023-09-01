@@ -143,6 +143,8 @@ For SNVs we are using bcftools mpileup. For SVs and short read data we are using
 ./2b_re-genotyping_main.sh VARIANT VAF VCF_1 VCF_2 MODIFIED_BAM OUTPUT_DIR, READ_LENGTH
 ```
 
+[Screenshots for spiked variants](./scripts/Spike/Screen_shots.md)
+
 ### TykeVar
 
 Here, we use the TykeVar workflow to modifiy reads of HG002 directly at their reference position by including artifical mutations to represent at variant allele frequency of 5%. In contrast to the above approach we do not introduce new haplotypes with this. However, more complex mutations (e.g. rearrangements, duplication or very long structural variants) will not be able to be introduced to the data itself, since the size of the reads is limited.
