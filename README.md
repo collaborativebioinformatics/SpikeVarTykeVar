@@ -195,7 +195,7 @@ python filter_merge_bam.py -b chr22.HG002_hs37d5_ONT-UL_GIAB_20200122.phased.bam
 
 #### 4) Run your favorite mosaic variant caller
 
-TODO:
+Run you choice of mosaic variant caller on the modified `mod.chr22.bam` file and compare the results with the simulated `hg0002SV.vcf` file.
 
 ## Method Description 
 
