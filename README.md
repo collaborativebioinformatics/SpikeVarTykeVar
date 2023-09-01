@@ -1,6 +1,6 @@
 # MosaicSim: Simulation of mosaic variants in sequencing data
 
-**Hackathon team: Lead: Fritz Sedlazeck - SysAdmins: Xinchang Zheng, Michal Izydorczyk, Chi-Lam Poon, Philippe Sanio, Farhang Jaryani, Joyjit Daw, Divya Kalra - Writers: Erik Stricker, Sontosh Deb**
+**Hackathon team: Lead: Fritz Sedlazeck - Developers: Xinchang Zheng, Michal Izydorczyk, Chi-Lam Poon, Philippe Sanio, Farhang Jaryani, Joyjit Daw, Divya Kalra - Writers: Erik Stricker, Sontosh Deb**
 
 *MosaicSim provides two simulation workflows which output sequencing read files with artificial mosaic variants and a ground truth annotation file for the mosaic variants for the validation of mosaic variant callers.*
 
