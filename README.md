@@ -6,30 +6,9 @@ Meet SpikeVar and TykeVar:
 
 https://github.com/collaborativebioinformatics/SVHack_simulatemosaic/assets/37314125/4d0dfe58-501c-4ee8-99ea-ff3411e23b4f 
 
-<style>
-table {
-    border-collapse: collapse;
-}
-table, th, td {
-   border: 1px solid black;
-}
-blockquote {
-    border-left: solid blue;
-    padding-left: 10px;
-}
-</style>
 
-| Column One    | Column Two    |
-| ---           | ---           |                                                                                                                                                   
-| data cell one | data cell two |   
-
-<p float="left">
-  <img src="images/Erik Stricker.jpg" height="150" width="150" />
-  Erik Stricker
-  <img src="Chi-Lam Poon.jpg" height="150" width="150" />
-  Chi-Lam Poon
-  <img src="images/Philippe Sanio.jpg" height="150" width="150" />
-</p>
+|![](images/Erik Stricker.jpg)<br>Erik Stricker|![](Chi-Lam Poon.jpg)<br>Chi-Lam Poon|
+|:-:|:-:|
 
 ![Erik Stricker]("images/Erik Stricker.jpg" "Erik Stricker") ![Chi-Lam Poon]("Chi-Lam Poon.jpg" "Chi-Lam Poon") .
 
