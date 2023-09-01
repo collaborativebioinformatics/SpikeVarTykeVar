@@ -72,7 +72,7 @@ For SNVs we are using bcftools mpileup. For SVs and short read data we are using
 ```
 ./2b_re-genotyping_main.sh VARIANT VAF VCF_1 VCF_2 MODIFIED_BAM OUTPUT_DIR, READ_LENGTH
 ```
-
+#### 3) Run your favorite mosaic variant caller and compare results
 
 ### TykeVar
 
@@ -122,6 +122,8 @@ For SNVs we are using bcftools mpileup. For SVs and short read data we are using
 ```
 
 <img src="images/TykeVarMerger.png"  height="200" align="right">
+
+#### 4) Run your favorite mosaic variant caller and compare results
 
 ## Example implementation
 
