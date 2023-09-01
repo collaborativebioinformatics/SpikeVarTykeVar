@@ -4,3 +4,4 @@ mosdepth
 samtools
 sniffles
 bcftools
+numpy
