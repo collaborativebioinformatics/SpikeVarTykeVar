@@ -1,10 +1,18 @@
 ## THIS ALL WORKS WITH XINCHANG HG002 ALIGNMENT TO GRCh37/Hg37 REF !!!!!!!!
+import sys
+
+if len(sys.argv) < 2:
+    print("Usage: python vcfgen.py <path_to_bam> <path_to_ref> <output_path_prefix>")
+    print("")
+    print("e.g. python vcfgen.py chr22.bam hs37d5.fa chr22")
+    print("The above generates a chr22SV.vcf and chr22SNV.vcf file")
+    exit(0)
 
 minAF=0.05 # minimum allele frequency SV   
 maxAF=0.25  # maximum allele frequency SV
 minAFsnp=0.05   # minimum allele frequency SNV   
 maxAFsnp=0.25   # maximum allele frequency SNV
-file='/stornext/snfs5/next-gen/scratch/zhengxc/hackton/HG002_ONT.bam'   # source bam to simulate SVs from
+file=sys.argv[1]   # source bam to simulate SVs from
 nosv=50 # no of SVs to simulate
 nosnv=200 # no of SNVs to simulate
 minsvl=50 # minimum SV length
@@ -13,8 +21,10 @@ maxsnp=10 # maximum size of indel SNV
 sub=0.7 # probability of producing a SNP vs indel in SNV
 insdelsnv=0.5   # probability of producing INS vs DEL in SNV
 insdel=0.7 # probability of producing INS vs DEL in SV
-SVvcf="HackatlonSV20.vcf" # name of output vcf file for SV
-SNVvcf="HackatlonSNV20.vcf" # name of output vcf file for SNV
+ref_path=sys.argv[2]
+out_prefix=sys.argv[3]
+SVvcf=f"{out_prefix}SV.vcf" # name of output vcf file for SV
+SNVvcf=f"{out_prefix}SNV.vcf" # name of output vcf file for SNV
 
 def genloc(no,file,mincov=20):
     from numpy import random as nran
@@ -90,7 +100,8 @@ def genlocSV(no,file,mincov=20):
         "X":155270560,
         "Y":59373566
     }
-    chrom=tuple(["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","X","Y"])
+    #chrom=tuple(["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","X","Y"])
+    chrom=tuple(["22"])
     locations=[]
     for i in range(no):
         while True:
@@ -195,21 +206,21 @@ def main():
             dellen=choice(range(minsvl,maxsvl))
             vcfsv.append(str(i[0])+"\t"+str(i[1])+"\tHackDel"+str(delno)+"\tN\t<DEL>\t60\tPASS\tPRECISE;SVTYPE=DEL;SVLEN=-"+str(dellen)+";END="+str(int(i[1])+dellen)+";AF="+str(round(uniform(minAF,maxAF),2))+"\tGT:GQ\t 0/0:60")
             delno+=1
-    with open(SVvcf,"a") as f:
+    with open(SVvcf,"w") as f:
         for i in tuple(vcfsv)[:-1]:
             f.write(i+'\n')
         f.write(tuple(vcfsv)[-1])
     f.close()
     #print(snvloc)
     vcfsnv=['##fileformat=VCFv4.2','##FILTER=<ID=PASS,Description="All filters passed">','##FORMAT=<ID=GT,Number=1,Type=String,Description="Genotype">','##FORMAT=<ID=AD,Number=R,Type=Integer,Description="Read depth for each allele">','##INFO=<ID=AF,Number=1,Type=Float,Description="Allele Frequency">','#CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO	FORMAT']
-    snps=getrefsnp('hg19.fa',snvloc)
+    snps=getrefsnp(ref_path,snvloc)
     from math import log
     
     for i in gensnps(maxsnp=maxsnp,sub=sub, snplist=snps):
         AFno=(round(uniform(minAF,maxAF),2))
         readno=ceil(AFno*i[2])
         vcfsnv.append('chr'+str(i[0])+'\t'+str(i[1])+'\t.\t'+str(i[3])+'\t'+str(i[4])+"\t1500\tPASS\tAF="+str(AFno)+"\tGT:AD\t0/0:"+str(i[2]-readno)+":"+str(readno))
-    with open(SNVvcf,"a") as f:
+    with open(SNVvcf,"w") as f:
         for i in tuple(vcfsnv)[:-1]:
             f.write(i+'\n')
         f.write(tuple(vcfsnv)[-1])
