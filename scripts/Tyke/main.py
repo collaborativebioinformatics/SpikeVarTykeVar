@@ -64,9 +64,9 @@ def vcf_number_variants(input_vcf_file,input_bam_file, refs, outfile):
                     end_position = int(obj.POS) + variant_len
                     variant_seq = obj.ALT[:variant_len]
                     #print(start_position,end_position)
-                    svtype = "INS"
-                    variant_len = 100
-                    variant_seq = 'T' * variant_len
+                    #svtype = "INS"
+                    #variant_len = 100
+                    #variant_seq = 'T' * variant_len
                     #print(f"{chromosome}:{start_position} {variant_len} {variant_seq}")
                     variant_reads = []
                     for read in bamfile.fetch(chromosome, start_position,end_position):
