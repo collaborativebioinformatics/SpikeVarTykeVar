@@ -1,7 +1,10 @@
 #!/bin/bash
 
 # Input vairables are: READ_LENGTH, VAF, MERGED_VCF, MOD_BAM and OUTPUT_DIR
-# READ_LENGTH can be either SHORT or LONG
+# Optional input variables for short_paragraph mode:
+# 1. REFERENCE : reference for MOD_BAM in fasta format
+# 2. OUTPUT_PFX : output prefix for paragraph
+# READ_LENGTH can be either SHORT or LONG or short_paragraph
 
 READ_LENGTH=$1
 VAF=$2
@@ -9,7 +12,7 @@ MERGED_VCF=$3
 MOD_BAM=$4
 OUTPUT_VCF=$5
 REFERENCE=$6
-SAMPLE_FOR_MOD_BAM=$7
+OUTPUT_PFX=$7
 
 # Descide which READ_LENGTH was selected
 
@@ -20,8 +23,10 @@ if [ "$READ_LENGTH" = "short" ]; then
     svtyper -B $MOD_BAM -i $MERGED_VCF -o $OUTPUT_VCF
 
 if [ "$READ_LENGTH" = "short_paragraph" ]; then
-    python3 bin/multigrmpy.py -i  $MERGED_VCF -m  $SAMPLE_FOR_MOD_BAM  -r $REFERENCE  -o ${OUTPUT_VCF}_out
-
+    
+    bin/idxdepth -b ${MOD_BAM} -r ${REFERENCE} -o ${OUTPUT_PFX}.depth.json
+    printf  "id\tpath\tidxdepth\nmxsample\t${MOD_BAM}\t${OUTPUT_PFX}.depth.json\n" > ${OUTPUT_PFX}.sample_manifest.txt
+    python3 bin/multigrmpy.py -i  $MERGED_VCF -m   ${OUTPUT_PFX}.sample_manifest.txt  -r $REFERENCE  -o ${OUTPUT_PFX}_out
 
 elif [ "$READ_LENGTH" = "long" ]; then
     echo "Input is 'long' starting Sniffles2"
