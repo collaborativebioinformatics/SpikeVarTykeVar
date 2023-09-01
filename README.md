@@ -122,16 +122,14 @@ In order to spike-in sample B into sample A, the pipeline first needs an initial
 Reads - `ftp://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/data/AshkenazimTrio/HG002_NA24385_son/Ultralong_OxfordNanopore/guppy-V3.2.4_2020-01-22/HG002_hs37d5_ONT-UL_GIAB_20200122.phased.bam` and `ftp://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/data/AshkenazimTrio/HG002_NA24385_son/Ultralong_OxfordNanopore/guppy-V3.2.4_2020-01-22/HG002_hs37d5_ONT-UL_GIAB_20200122.phased.bam.bai`
 
 
-#### 2) Generate spike-in dataset
+#### 2) SpikeVarDatabaseCreator - Generate spike-in dataset
 We spiked 5% reads from HG0733 to HG002 for the next part of the workflow.
 ```
 sh spike-in.sh HG002_hs37d5_ONT-UL_GIAB_20200122.phased.bam HG007733.bam 0.05 /software/bin/samtools /software/bin/mosdepth /output `pwd`/calculate_ratio.py
 ```
-#### 3)  XXXX  Philippe add info
+#### 3) SpikeVarReporter
 TODO:
 
-#### 4)  XXXXX  Xingchang add info
-TODO:
 
 
 ### TykeVar
