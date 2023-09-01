@@ -258,17 +258,17 @@ Run you choice of mosaic variant caller on the modified `mod_chr22.bam` file and
 
 The `mod_chr22.bam` file was run through Sniffles to determine potential mosaic variants. Then the ground truth VCF (chr22SV.vcf) and the VCF from
 Sniffles were both visualized on IGV to get a subjective view of whether the modified reads led to mosaic variants being introduced and detected.
-Below are 2 of several variants that overlapped between the ground truth and caller VCF.
+Below are 2 of several variants that overlapped between the ground truth and caller VCF and were confirmed in the underlying data.
 
 [<img src="images/TykeVarMosaicInsert.png " align="center"/>](TykeVarMosaicInsert.png )  
-<p align="center"><b>A mosaic insertion introduced into the reads by modifying a subset of the reads.</b></p>
+<p align="center"><b>A mosaic SV insertion.</b></p>
 <br />
 
 [<img src="images/TykeVarMosaicDel.png " align="center"/>](TykeVarMosaicDel.png )  
-<p align="center"><b>iA mosaic deletion introduced into the reads by modifying a subset of the reads.</b></p>
+<p align="center"><b>A mosaic SV deletion.</b></p>
 
 [<img src="images/TykeVarMosaicSNP.png " align="center"/>](TykeVarMosaicSNP.png )  
-<p align="center"><b>A mosaic SNP introduced into the reads by modifying a subset of the reads.</b></p>
+<p align="center"><b>A mosaic SNP.</b></p>
 
 ## Method Description 
 
