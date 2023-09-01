@@ -30,7 +30,7 @@ where `$REPO_ROOT` is the root folder of the repository.
 
 #### 1) Generate simulated VCF
 
-<img src="images/TykeVarSimulator.png" width="150" height="150" align="right">
+<img src="images/TykeVarSimulator.png"  height="150" align="right">
 
 
 The VCF simulator generates a random set of mosaic variants (SNVs and SVs). The variants
@@ -49,6 +49,8 @@ The above generates a chr22SV.vcf and chr22SNV.vcf file
 ```
 
 #### 2) Generate edited reads based on simulated VCF
+
+<img src="images/TykeVarEditor.png"  height="150" align="right">
 
 ```
 python main.py -v <SIMULATED_VCF> -b <BAM> -r <REF> -o <OUTPUT_FASTQ>
