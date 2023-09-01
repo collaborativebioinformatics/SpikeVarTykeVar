@@ -3,8 +3,11 @@
 ## Contributers
 
 
-|<video width="100" height="100" src="https://github.com/collaborativebioinformatics/SVHack_simulatemosaic/assets/37314125/4d0dfe58-501c-4ee8-99ea-ff3411e23b4f"></video><br>SpikeVar and TyleVar|<img src="images/Erik Stricker.jpg" width="400"/><br>Erik Stricker|<img src="images/Chi-Lam Poon.jpg" width="400"/><br>Chi-Lam Poon|<img src="images/Philippe Sanio.jpg" width="400"/><br>Philippe Sanio|<img src="images/Xinchang Zheng.jpg" width="400"/><br>Xinchang Zheng|<img src="images/Farhang Jaryani.png" width="400"/><br>Farhang Jaryani|<img src="images/Joyjit Daw.png" width="400"/><br>Joyjit Daw|<img src="images/Michal Bogumil Izydorczyk.png" width="400"/><br>Michal Izydorczyk|<img src="images/Sontosh K Deb.jpg" width="400"/><br>Sontosh Deb.jpg|<img src="images/Fritz Sedlazeck.jpg" width="400"/><br>Fritz Sedlazeck|<img src="images/Divya Kalra.jpg" width="400"/><br>Divya Kalra|
-|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+|<video width="100" height="100" src="https://github.com/collaborativebioinformatics/SVHack_simulatemosaic/assets/37314125/4d0dfe58-501c-4ee8-99ea-ff3411e23b4f"></video><br>SpikeVar and TyleVar|<img src="images/Erik Stricker.jpg" width="400"/><br>Erik Stricker|<img src="images/Chi-Lam Poon.jpg" width="400"/><br>Chi-Lam Poon|<img src="images/Philippe Sanio.jpg" width="400"/><br>Philippe Sanio|<img src="images/Xinchang Zheng.jpg" width="400"/><br>Xinchang Zheng|
+|:-:|:-:|:-:|:-:|:-:|
+
+|<img src="images/Farhang Jaryani.png" width="400"/><br>Farhang Jaryani|<img src="images/Joyjit Daw.png" width="400"/><br>Joyjit Daw|<img src="images/Michal Bogumil Izydorczyk.png" width="400"/><br>Michal Izydorczyk|<img src="images/Sontosh K Deb.jpg" width="400"/><br>Sontosh Deb.jpg|<img src="images/Fritz Sedlazeck.jpg" width="400"/><br>Fritz Sedlazeck|<img src="images/Divya Kalra.jpg" width="400"/><br>Divya Kalra|
+|:-:|:-:|:-:|:-:|:-:|:-:|
 
 
 ## Background
