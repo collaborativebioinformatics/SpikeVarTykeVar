@@ -25,7 +25,7 @@ elif [ "$READ_LENGTH" = "long" ]; then
     echo "Input is 'long' starting Sniffles2"
     # change to conda env which uses python 3.6 called mosaicSim
     conda activate mosaicSim
-    sniffles --input sample.bam --genotype-vcf $MERGED_VCF --sample-id mosaicSim --vcf $OUTPUT_VCF
+    sniffles --input $MOD_BAM --genotype-vcf $MERGED_VCF --sample-id mosaicSim --vcf $OUTPUT_VCF
 else
     echo "Error: Invalid input"
 fi
