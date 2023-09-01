@@ -8,7 +8,7 @@ pip install -r $REPO_ROOT/requirements.txt
 ```
 where `$REPO_ROOT` is the root folder of the repository.
 
-## How to use its
+## How to use it
 
 ### TykeVar
 
