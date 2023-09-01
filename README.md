@@ -54,9 +54,12 @@ The spiked-in dataset simulates a sample with potential mosiac variants at a use
 
 #### 1) Generate spiked-in dataset
 
-<img src="images/SpikeVarDatabaseCreater.png"  height="130" align="right">
+<img src="images/SpikeVarDatabaseCreater.png"  height="130" align="right">  
+
+In this step, x% of mutations are strategically introduced from sample A to sample B. Both datasets are down-sampled and then merged to create a mixed dataset that represents a sequence read dataset with mosaic variants, including structural variations (SVs), single nucleotide variations (SNVs), and insertions/deletions (indels). 
+
 ```
-sh spike-in.sh <path to sampleA.bam> <path to sampleB.bam> <spike-in ratio> <path to samtools binary> <path to mosdepth binary> <output dirpath> <path to script calculate_ratio.py>
+sh spike-in.sh <path to sampleA.bam> <path to sampleB.bam> <spike-in ratio x/100> <path to samtools binary> <path to mosdepth binary> <output dirpath> <path to script calculate_ratio.py>
 ```
 #### 2) XXX  Philippe add info
 TODO
