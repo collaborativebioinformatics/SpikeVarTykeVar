@@ -4,7 +4,6 @@
 
 Meet SpikeVar and TykeVar:  
 
-[<img src="images/Spike and Tyke image4.jpg" width="200"/>](workflow1.png)
 
 ## Background
 
@@ -56,6 +55,5 @@ Here, we use the TykeVar workflow to modifiy reads of HG002 directly at their re
 
 ## SpikeVar and TykeVar Bark
 
-[<video src='audio/Baby_bulldog.mov'>](audio/Baby_bulldog.mov)
-[bark](audio/Baby_bulldog.mov)
+
 
