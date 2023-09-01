@@ -75,7 +75,44 @@ python main.py -v hg002SV.vcf -b HG002_hs37d5_ONT-UL_GIAB_20200122.phased.bam -r
 Once the new reads are generated, they need to be re-aligned and re-inserted back into
 the dataset by replacing the original reads.
 
-TODO:
+Installation:
+```console
+# install samtools, bwa-mem2, minimap2
+mkdir -p ~/tools && cd ~/tools
+wget https://github.com/samtools/samtools/releases/download/1.18/samtools-1.18.tar.bz2
+tar jxf samtools-1.18.tar.bz2 && cd samtools-1.18
+./configure --prefix=$(pwd)
+make && make install
+export PATH=$HOME/tools/samtools-1.18/:$PATH
+
+cd ~/tools
+curl -L https://github.com/bwa-mem2/bwa-mem2/releases/download/v2.2.1/bwa-mem2-2.2.1_x64-linux.tar.bz2 | tar jxf -
+export PATH=$HOME/tools/bwa-mem2-2.2.1_x64-linux/:$PATH
+
+curl -L https://github.com/lh3/minimap2/releases/download/v2.26/minimap2-2.26_x64-linux.tar.bz2 | tar -jxvf -
+export PATH=$HOME/tools/minimap2-2.26_x64-linux/:$PATH
+```
+
+Indexing and mapping:
+```console
+# indexing reference genome
+bwa-mem2 index hs37d5.fa.gz
+minimap2 -x map-ont -d mm2_hs37d5.mmi hs37d5.fa.gz
+
+# mapping 
+## short read
+bwa-mem2 mem -t 14 ~/reference/hs37d5.fa.gz samp.fastq -o bwa_align/test.sam
+samtools view -bS --no-PG bwa_align/test.sam | samtools sort -@ 12 --no-PG - > bwa_align/test.sorted.bam
+
+## long read
+minimap2 -a ~/reference/mm2_hs37d5.mmi -t 14 --secondary=no chr22.fastq | samtools view -bS --no-PG - > mod.chr22.bam
+```
+
+Postprocessing bam:
+```
+python filter_merge_bam.py -b chr22.HG002_hs37d5_ONT-UL_GIAB_20200122.phased.bam \
+    -m mod.chr22.bam -o . --prefix mod_chr22 --primary
+```
 
 #### 4) Run your favorite mosaic variant caller
 
