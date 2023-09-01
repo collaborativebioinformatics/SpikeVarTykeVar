@@ -50,11 +50,12 @@ The above generates a chr22SV.vcf and chr22SNV.vcf file
 
 #### 2) Generate edited reads based on simulated VCF
 
-<img src="images/TykeVarEditor.png"  height="150" align="right">
 
 ```
 python main.py -v <SIMULATED_VCF> -b <BAM> -r <REF> -o <OUTPUT_FASTQ>
 ```
+
+<img src="images/TykeVarEditor.png"  height="250" align="right">
 
 This command above takes in the VCF which determines which variants to introduce into the reads.
 The BAM file is used to find the reads which overlap with variant locations. Only a subset of the reads
