@@ -1,6 +1,6 @@
 # MosaicSim: Simulation of mosaic variants in sequencing data
 
-
+<video src="https://github.com/collaborativebioinformatics/SVHack_simulatemosaic/assets/37314125/4d0dfe58-501c-4ee8-99ea-ff3411e23b4f" align="right">
 
 ## Table of Contents
 1. [Background](#background)
