@@ -235,7 +235,16 @@ python filter_merge_bam.py -b chr22.HG002_hs37d5_ONT-UL_GIAB_20200122.phased.bam
 
 #### 4) Run your favorite mosaic variant caller
 
-Run you choice of mosaic variant caller on the modified `mod.chr22.bam` file and compare the results with the simulated `hg0002SV.vcf` file.
+Run you choice of mosaic variant caller on the modified `mod_chr22.bam` file and compare the results with the simulated `chr22SV.vcf` file.
+
+#### 5) Results
+
+The `mod_chr22.bam` file was run through Sniffles to determine potential mosaic variants. Then the ground truth VCF (chr22SV.vcf) and the VCF from
+Sniffles were both visualized on IGV to get a subjective view of whether the modified reads led to mosaic variants being introduced and detected.
+Below are 2 (an insertion and a deletion) of several variants that overlapped between the ground truth and caller VCF.
+
+[<img src="images/TykeVarMosaicInsert.png " width="500"/>](TykeVarMosaicInsert.png )
+[<img src="images/TykeVarMosaicDel.png " width="500"/>](TykeVarMosaicDel.png )
 
 ## Method Description 
 
