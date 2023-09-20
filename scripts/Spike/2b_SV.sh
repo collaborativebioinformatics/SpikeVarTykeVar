@@ -16,7 +16,8 @@ OUTPUT_PFX=$7
 
 # Descide which READ_LENGTH was selected
 if [ "$READ_LENGTH" = "short" ]; then
-    
+
+    # https://github.com/Illumina/paragraph
     bin/idxdepth -b ${MOD_BAM} -r ${REFERENCE} -o ${OUTPUT_PFX}.depth.json
     printf  "id\tpath\tidxdepth\nmxsample\t${MOD_BAM}\t${OUTPUT_PFX}.depth.json\n" > ${OUTPUT_PFX}.sample_manifest.txt
     python3 bin/multigrmpy.py -i  $MERGED_VCF -m   ${OUTPUT_PFX}.sample_manifest.txt  -r $REFERENCE  -o ${OUTPUT_PFX}_out
