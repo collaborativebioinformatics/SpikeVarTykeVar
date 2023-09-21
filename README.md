@@ -58,7 +58,7 @@ The spiked-in dataset simulates a sample with potential mosiac variants at a use
 In this step, x% of mutations are strategically introduced from sample A to sample B. Both datasets are down-sampled and then merged to create a mixed dataset that represents a sequence read dataset with mosaic variants, including structural variations (SVs), single nucleotide variations (SNVs), and insertions/deletions (indels). 
 
 ```
-sh spike-in.sh <path to sampleA.bam> <path to sampleB.bam> <spike-in ratio x/100> <path to samtools binary> <path to mosdepth binary> <output dirpath> <path to script calculate_ratio.py>
+./spike-in.sh <path to sampleA.bam> <path to sampleB.bam> <spike-in ratio x/100> <path to samtools binary> <path to mosdepth binary> <output dirpath> <path to script calculate_ratio.py>
 ```
 #### 2) SpikeVarReporter - Filter Reads After Variant Allele Frequency Recalculation
 
@@ -159,7 +159,7 @@ Reads - `ftp://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/data/AshkenazimT
 #### 2) SpikeVarDatabaseCreator - Generate Spike-in Dataset
 We spiked 5% reads from HG0733 to HG002 for the next part of the workflow.
 ```
-sh spike-in.sh HG002_hs37d5_ONT-UL_GIAB_20200122.phased.bam HG007733.bam 0.05 /software/bin/samtools /software/bin/mosdepth /output `pwd`/calculate_ratio.py
+./spike-in.sh HG002_hs37d5_ONT-UL_GIAB_20200122.phased.bam HG007733.bam 0.05 /software/bin/samtools /software/bin/mosdepth /output `pwd`/calculate_ratio.py
 ```
 #### 3) SpikeVarReporter - Filter Reads with >5% Variant Allele Frequency After Recalculation
 After creating the new BAM file from e.g. HG002 and HG00733, we have to re-calculate the variant allele frequency (VAF) for all variants.
@@ -167,7 +167,7 @@ First we merge both VCF files from e.g. HG002 and HG00733 with bcftools. Dependi
 For SNVs we are using bcftools mpileup. For SVs and short read data we are using Paragraph from Illumina and for long read data Sniffles2 is used.
 
 ```
-./2b_re-genotyping_main.sh SV 0.05 HG002_SV.Tier1.vcf HG00377_SV.Tier1.vcf SPIKED.BAM ./ LONG hs37d5.fa
+./2b_re-genotyping_main.sh SV 0.05 HG002_SV.Tier1.vcf HG00377_SV.Tier1.vcf /output/SPIKED.BAM ./ LONG hs37d5.fa
 ```
 
 #### 4) Run Your Favorite Mosaic Variant Caller
