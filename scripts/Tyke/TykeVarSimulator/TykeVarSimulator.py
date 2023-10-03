@@ -2,7 +2,7 @@
 import sys
 
 if len(sys.argv) < 2:
-    print("Usage: python vcfgen.py <path_to_bam> <path_to_ref> <output_path_prefix>")
+    print("Usage: python vcfgen.py <path_to_bam> <path_to_ref> <output_path_prefix> <OPTIONAL:seed>")
     print("")
     print("e.g. python vcfgen.py chr22.bam hs37d5.fa chr22")
     print("The above generates a chr22SV.vcf and chr22SNV.vcf file")
@@ -25,6 +25,7 @@ ref_path=sys.argv[2]
 out_prefix=sys.argv[3]
 SVvcf=f"{out_prefix}SV.vcf" # name of output vcf file for SV
 SNVvcf=f"{out_prefix}SNV.vcf" # name of output vcf file for SNV
+seed=sys.argv[4]
 
 def genloc(no,file,mincov=20):
     from numpy import random as nran
@@ -120,7 +121,7 @@ def genlocSV(no,file,mincov=20):
     return tuple(locations)
 def genseq(minl,maxl):
     nucl=tuple(["A","T","C","G"])
-    from random import choice
+    from numpy.random import choice
     res=''
     for i in range(choice(range(minl,maxl+1))):
         res+=choice(nucl)
@@ -186,8 +187,10 @@ def getrefsnp(reffile,snplist=1):
 def main():
     from math import ceil
     from numpy.random import choice
-    from random import uniform
-
+    from numpy.random import uniform
+    from numpy.random import seed as npseed
+    if seed.isDigit()==1:
+	    npseed(seed)
     svloc=genlocSV(nosv,file,ceil(1/minAF))
     snvloc=genloc(nosnv,file,ceil(1/minAF))
     #print(snvloc)
