@@ -1,9 +1,5 @@
 pysam
 biopython
-mosdepth
-samtools
 sniffles
-bcftools
 numpy
 pandas
-clair3 ## snv detection - simulation still in progress as of now

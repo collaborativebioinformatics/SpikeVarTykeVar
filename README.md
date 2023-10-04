@@ -19,6 +19,14 @@ In the context of individual genome comparison, mutations that appear within a s
 
 
 ## Installation
+These instructions are valid for **Linux x86**. For other platforms (e.g. MacOS), instructions will need to be adapted.
+
+Installing two conda environments with python 3.10
+```
+conda create -n mosaicSim python=3.10
+
+conda activate mosaicSim
+```
 
 This tool is written fully in python. To install the relevant dependencies, run
 ```
@@ -26,11 +34,9 @@ pip install -r $REPO_ROOT/requirements.txt
 ```
 where `$REPO_ROOT` is the root folder of the repository.
 
-Installing two conda environments with python 3.10
+Once the requirements are installed, please install the following additional packages
 ```
-conda create -n mosaicSim python=3.10
-
-conda activate mosaicSim
+conda install -c bioconda samtools bcftools mosdepth
 ```
 ## Dependencies
 
