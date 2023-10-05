@@ -1,5 +1,5 @@
-pysam
 biopython
-sniffles
-numpy
-pandas
+sniffles==2.2
+pysam==0.21.0
+numpy==1.24.3
+pandas==2.0.1
