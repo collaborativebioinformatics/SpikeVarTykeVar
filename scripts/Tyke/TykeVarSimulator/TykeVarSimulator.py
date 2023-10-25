@@ -8,8 +8,13 @@ if len(sys.argv) < 2:
     print("The above generates a chr22SV.vcf and chr22SNV.vcf file")
     exit(0)
 
-minAF=0.05 # minimum allele frequency SV   
-maxAF=0.25  # maximum allele frequency SV
+for a in sys.argv:
+	if a.startswith("AF="):
+		minAF=int(a.lstrip("AF="))
+		maxAF=int(a.lstrip("AF="))
+	else:
+		minAF=0.05 # minimum allele frequency SV   
+		maxAF=0.25  # maximum allele frequency SV
 minAFsnp=0.05   # minimum allele frequency SNV   
 maxAFsnp=0.25   # maximum allele frequency SNV
 file=sys.argv[1]   # source bam to simulate SVs from
@@ -26,6 +31,8 @@ out_prefix=sys.argv[3]
 SVvcf=f"{out_prefix}SV.vcf" # name of output vcf file for SV
 SNVvcf=f"{out_prefix}SNV.vcf" # name of output vcf file for SNV
 seed=sys.argv[4]
+
+			
 
 def genloc(no,file,mincov=20):
     from numpy import random as nran
@@ -219,7 +226,8 @@ def main():
     from math import log
     
     for i in gensnps(maxsnp=maxsnp,sub=sub, snplist=snps):
-        AFno=(round(uniform(minAF,maxAF),2))
+        if 
+	AFno=(round(uniform(minAF,maxAF),2))
         readno=ceil(AFno*i[2])
         vcfsnv.append(str(i[0])+'\t'+str(i[1])+'\t.\t'+str(i[3])+'\t'+str(i[4])+"\t1500\tPASS\tAF="+str(AFno)+"\tGT:AD\t0/0:"+str(i[2]-readno)+":"+str(readno))
     with open(SNVvcf,"w") as f:
