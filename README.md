@@ -173,7 +173,7 @@ First we merge both VCF files from e.g. HG002 and HG00733 with bcftools. Dependi
 For SNVs we are using bcftools mpileup. For SVs and short read data we are using Paragraph from Illumina and for long read data Sniffles2 is used.
 
 ```
-./2b_re-genotyping_main.sh SV 0.05 HG002_SV.Tier1.vcf HG00377_SV.Tier1.vcf /output/SPIKED.BAM ./ LONG hs37d5.fa
+./2b_re-genotyping_main.sh SV 0.05 HG002_SV.Tier1.vcf HG00733_SV.Tier1.vcf /output/SPIKED.BAM ./ LONG hs37d5.fa
 ```
 
 #### 4) Run Your Favorite Mosaic Variant Caller
