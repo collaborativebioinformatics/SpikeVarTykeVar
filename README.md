@@ -51,6 +51,15 @@ conda install -c bioconda samtools bcftools mosdepth
 - numpy (1.25.2)
 - biopython (1.81)
 
+## Tests
+
+The repository comes with unit tests to ensure correct setup and functioning of core libraries.
+
+To run the unit tests, please execute
+```
+python -m pytest tests/*
+```
+
 ## How to Use It
 
 ### SpikeVar
