@@ -6,7 +6,7 @@
 
 
 ## Table of Contents
-|1. [Background](#background)<br>2. [Installation](#installation)<br>3. [Dependencies](#dependencies)<br>4. [How to Use It](#how-to-use-it)<br>5. [Example Implementation](#example-implementation)<br>6. [Method Description](#method-description)<br>7. [Contributers](#contributers)<br>8. [References](#references)<br><img width=1000/>|<video src="https://github.com/collaborativebioinformatics/SVHack_simulatemosaic/assets/37314125/4d0dfe58-501c-4ee8-99ea-ff3411e23b4f" width="200" height="200" align="right">|
+|1. [Background](#background)<br>2. [Installation](#installation)<br>3. [Dependencies](#dependencies)<br>4. [Tests](#tests)<br>5. [How to Use It](#how-to-use-it)<br>6. [Example Implementation](#example-implementation)<br>7. [Method Description](#method-description)<br>8. [Contributers](#contributers)<br>9. [References](#references)<br><img width=1000/>|<video src="https://github.com/collaborativebioinformatics/SVHack_simulatemosaic/assets/37314125/4d0dfe58-501c-4ee8-99ea-ff3411e23b4f" width="200" height="200" align="right">|
 |:------|-:|
 
 
@@ -50,6 +50,15 @@ conda install -c bioconda samtools bcftools mosdepth
 - pysam (0.21.0) 
 - numpy (1.25.2)
 - biopython (1.81)
+
+## Tests
+
+The repository comes with unit tests to ensure correct setup and functioning of core libraries.
+
+To run the unit tests, please execute
+```
+python -m pytest tests/*
+```
 
 ## How to Use It
 

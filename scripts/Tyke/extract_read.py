@@ -91,10 +91,10 @@ def edit_read(ref_seq, ref_start, read, quals, cigartuples, variant_pos, variant
             print("No variant location found. Does the last cigar entry contain insertions to the ref or soft clips?")
     return (None, None)
 
-def read_ref(fq_file):
+def read_ref(fq_file, fmt="fasta"):
     refs = {}
-    for seq_record in SeqIO.parse(fq_file, "fasta"):
-        refs[seq_record.id] = repr(seq_record.seq)
+    for seq_record in SeqIO.parse(fq_file, fmt):
+        refs[seq_record.id] = str(seq_record.seq)
     return refs
 
 def load_bam_queries(bam_file, refs, outfile):
