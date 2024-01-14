@@ -1,16 +1,62 @@
 from unittest import TestCase
-from vcf_line_parser import VCFHeader, VCFLineSV
+from scripts.Tyke.vcf_line_parser import VCFHeader, VCFLineSV
 
-class TestVCFHeader(TestCase):
-    def test_input(self):
-        header=VCFHeader('#CHROM\tPOS\tID\tREF\tALT\tQUAL\tFILTER\tINFO\tFORMAT\tSample1')
-        self.assertFalse(header.ERROR)
-        self.assertEqual(1,len(header.SAMPLES))
-        self.assertEqual("Sample1",header.SAMPLES[0])
-    def test_invalid_input(self):
-        header=VCFHeader('POS\tID\tREF\tALT\tQUAL\tFILTER\tINFO\tFORMAT')
-        self.assertTrue(header.ERROR)
-        self.assertEqual("",header.SAMPLES)
+
+def test_error_should_be_true_when_input_line_is_none_for_VCFHeader():
+    # Arrange
+    input_line = None
+
+    # Act
+    vcf_header = VCFHeader(input_line)
+    
+    # Assert
+    assert vcf_header.ERROR == True
+
+
+def test_error_should_be_true_when_input_line_has_less_than_nine_columns_for_VCFHeader():
+    # Arrange
+    input_line = '#CHROM\tPOS'
+
+    # Act
+    vcf_header = VCFHeader(input_line)
+    
+    # Assert
+    assert vcf_header.ERROR == True
+
+
+def test_error_should_be_false_when_input_line_has_more_than_eight_columns_for_VCFHeader():
+    # Arrange
+    input_line = ('column\t' * 9).strip('\t') 
+
+    # Act
+    vcf_header = VCFHeader(input_line)
+    
+    # Assert
+    assert vcf_header.ERROR == False
+
+
+def test_sample_should_be_columns_9_onwards_for_VCFHeader():
+    # Arrange
+    input_line = ('column\t' * 12).strip('\t') 
+
+    # Act
+    vcf_header = VCFHeader(input_line)
+    
+    # Assert
+    assert vcf_header.SAMPLES == ['column', 'column', 'column']
+
+
+    
+def test_error_should_be_true_when_input_line_is_none_for_VCLineSV():
+    # Arrange
+    input_line = "column" 
+
+    # Act
+    vcf_line_sv = VCFLineSV(input_line)
+    
+    # Assert
+    assert vcf_line_sv.ERROR == True
+
 
 class TestVCFLineSV(TestCase):
     def test_input(self):
@@ -27,6 +73,7 @@ class TestVCFLineSV(TestCase):
         self.assertEqual
         #self.FILTER, INFO,
         #      FORMAT
+    
     def test_invalid_input(self):
         line="13\t22253030\tHackIns1"
         vcf_line=VCFLineSV(line)
