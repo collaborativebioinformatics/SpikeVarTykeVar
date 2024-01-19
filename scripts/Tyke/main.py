@@ -48,7 +48,7 @@ def vcf_number_variants(input_vcf_file, input_bam_file, refs, outfile):
     processed_read_ids = set()
     """return the number of each variant seprately"""
     bamfile = pysam.AlignmentFile(input_bam_file, 'rb')
-    vcffile = pysam.VariantFile(input_vcf_file, 'rb') # SV or SNV vcf
+    vcffile = pysam.VariantFile(input_vcf_file, 'r') # SV or SNV vcf
     
     with open(outfile, 'w') as out_fh:
         for v in vcffile:
