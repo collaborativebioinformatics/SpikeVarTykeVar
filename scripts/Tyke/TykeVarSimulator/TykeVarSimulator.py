@@ -1,7 +1,10 @@
 ## THIS ALL WORKS WITH XINCHANG HG002 ALIGNMENT TO GRCh37/Hg37 REF !!!!!!!!
 import sys
 import pysam
-
+from numpy import random as nran
+from pysam import depth
+from numpy.random import choice
+    
 if len(sys.argv) < 2:
     print("Usage: python vcfgen.py <path_to_bam> <path_to_ref> <output_path_prefix> <OPTIONAL:seed>")
     print("")
@@ -19,8 +22,8 @@ for a in sys.argv:
 minAFsnp=0.05   # minimum allele frequency SNV   
 maxAFsnp=0.25   # maximum allele frequency SNV
 file=sys.argv[1]   # source bam to simulate SVs from
-nosv=50 # no of SVs to simulate
-nosnv=200 # no of SNVs to simulate
+nosv=1 # no of SVs to simulate
+nosnv=5 # no of SNVs to simulate
 minsvl=50 # minimum SV length
 maxsvl=10000 # maximum SV length
 maxsnp=10 # maximum size of indel SNV
@@ -42,10 +45,9 @@ def get_chrom_lengths(bam_file, ref_chroms=CHROMS):
     return chromol, tuple(chromol.keys())
 
 def genloc(no,file,mincov=20):
-    from numpy import random as nran
-    from pysam import depth
     
     chromol, chrom = get_chrom_lengths(file)
+
     locations=[]
     for i in range(no):
         while True:
@@ -88,7 +90,6 @@ def genseq(minl,maxl):
         res+=choice(nucl)
     return res
 def gensnps(maxsnp=maxsnp,sub=sub,insdelsnv=insdelsnv, snplist=[]):
-    from numpy.random import choice
     result=[]
     nucl=["A","T","C","G"]
     for i in range(len(snplist)):
@@ -106,7 +107,7 @@ def gensnps(maxsnp=maxsnp,sub=sub,insdelsnv=insdelsnv, snplist=[]):
                 result.append(tuple(list(snplist[i][0:3])+[snplist[i][3].upper()[:rmlen]]+[snplist[i][3].upper()[0]]))
 
     return tuple(result)
-def getrefsnp(reffile,snplist=1):
+def getrefsnp(reffile,snplist):
     with open(reffile,'r') as f:
         data=[]
         cta=[]
@@ -121,7 +122,7 @@ def getrefsnp(reffile,snplist=1):
                 else:
                     if analyse==1:
                         data.append(tuple([chromosome,seq]))
-                chromosome=line.lstrip(">").split(" ")[0].lstrip("chr").rstrip("\n")
+                chromosome=line.lstrip(">").split(" ")[0].rstrip("\n")
                 seq=''
                 analyse=0
                 if chromosome in cta:
@@ -132,9 +133,7 @@ def getrefsnp(reffile,snplist=1):
                 seq+=line.rstrip("\n") 
         if analyse==1:
             data.append(tuple([chromosome,seq]))
-        data=tuple(data)
-
-    f.close()
+            
     snplistmod=[]
     for i in snplist:
         for j in data:
@@ -152,9 +151,8 @@ def main():
     from numpy.random import seed as npseed
     if seed.isdigit()==1:
         npseed(int(seed))
-    svloc=genlocSV(nosv,file,ceil(1/minAF))
+    #svloc=genlocSV(nosv,file,ceil(1/minAF))
     snvloc=genloc(nosnv,file,ceil(1/minAF))
-    #print(snvloc)
     vcfsv=[
         '##fileformat=VCFv4.2',
         '##ALT=<ID=INS,Description="Insertion">',
@@ -171,22 +169,21 @@ def main():
     ]
     insertno=1
     delno=1
-    for i in svloc:
-        draw = choice(tuple(['in','del']), 1, p=[insdel,1-insdel])    
-        if draw=='in':
-            seq=genseq(minsvl,maxsvl)
-            vcfsv.append(str(i[0])+"\t"+str(i[1])+"\tHackIns"+str(insertno)+"\tN\t"+seq+"\t60\tPASS\tPRECISE;SVTYPE=INS;SVLEN="+str(len(seq))+";END="+str(int(i[1])+len(seq))+";AF="+str(round(uniform(minAF,maxAF),2))+"\tGT:GQ\t0/0:60")
-            #PRECISE;SVTYPE=INS;SVLEN=333;END=748218 AF \t GT:GQ:DR:DV \t	0/0:28:28:5
-            insertno+=1
-        else:
-            dellen=choice(range(minsvl,maxsvl))
-            vcfsv.append(str(i[0])+"\t"+str(i[1])+"\tHackDel"+str(delno)+"\tN\t<DEL>\t60\tPASS\tPRECISE;SVTYPE=DEL;SVLEN=-"+str(dellen)+";END="+str(int(i[1])+dellen)+";AF="+str(round(uniform(minAF,maxAF),2))+"\tGT:GQ\t0/0:60")
-            delno+=1
+    # for i in svloc:
+    #     draw = choice(tuple(['in','del']), 1, p=[insdel,1-insdel])    
+    #     if draw=='in':
+    #         seq=genseq(minsvl,maxsvl)
+    #         vcfsv.append(str(i[0])+"\t"+str(i[1])+"\tHackIns"+str(insertno)+"\tN\t"+seq+"\t60\tPASS\tPRECISE;SVTYPE=INS;SVLEN="+str(len(seq))+";END="+str(int(i[1])+len(seq))+";AF="+str(round(uniform(minAF,maxAF),2))+"\tGT:GQ\t0/0:60")
+    #         #PRECISE;SVTYPE=INS;SVLEN=333;END=748218 AF \t GT:GQ:DR:DV \t	0/0:28:28:5
+    #         insertno+=1
+    #     else:
+    #         dellen=choice(range(minsvl,maxsvl))
+    #         vcfsv.append(str(i[0])+"\t"+str(i[1])+"\tHackDel"+str(delno)+"\tN\t<DEL>\t60\tPASS\tPRECISE;SVTYPE=DEL;SVLEN=-"+str(dellen)+";END="+str(int(i[1])+dellen)+";AF="+str(round(uniform(minAF,maxAF),2))+"\tGT:GQ\t0/0:60")
+    #         delno+=1
     with open(SVvcf,"w") as f:
         for i in tuple(vcfsv)[:-1]:
             f.write(i+'\n')
         f.write(tuple(vcfsv)[-1])
-    f.close()
     ##print(snvloc)
     vcfsnv=[
         '##fileformat=VCFv4.2',
@@ -203,12 +200,13 @@ def main():
         #TODO
         AFno=(round(uniform(minAF,maxAF),2))
         readno=ceil(AFno*i[2])
+        tmp=str(i[0])+'\t'+str(i[1])+'\t.\t'+str(i[3])+'\t'+str(i[4])+"\t1500\tPASS\tAF="+str(AFno)+"\tGT:AD\t0/0:"+str(i[2]-readno)+":"+str(readno)
+        print(tmp)
         vcfsnv.append(str(i[0])+'\t'+str(i[1])+'\t.\t'+str(i[3])+'\t'+str(i[4])+"\t1500\tPASS\tAF="+str(AFno)+"\tGT:AD\t0/0:"+str(i[2]-readno)+":"+str(readno))
     with open(SNVvcf,"w") as f:
         for i in tuple(vcfsnv)[:-1]:
             f.write(i+'\n')
         f.write(tuple(vcfsnv)[-1])
-    f.close()
     #for i in gensnps():
     #    print(i) 
 if __name__=="__main__":
