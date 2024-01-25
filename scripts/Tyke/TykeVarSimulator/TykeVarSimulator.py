@@ -151,7 +151,7 @@ def main():
     from numpy.random import seed as npseed
     if seed.isdigit()==1:
         npseed(int(seed))
-    #svloc=genlocSV(nosv,file,ceil(1/minAF))
+    svloc=genlocSV(nosv,file,ceil(1/minAF))
     snvloc=genloc(nosnv,file,ceil(1/minAF))
     vcfsv=[
         '##fileformat=VCFv4.2',
@@ -169,17 +169,17 @@ def main():
     ]
     insertno=1
     delno=1
-    # for i in svloc:
-    #     draw = choice(tuple(['in','del']), 1, p=[insdel,1-insdel])    
-    #     if draw=='in':
-    #         seq=genseq(minsvl,maxsvl)
-    #         vcfsv.append(str(i[0])+"\t"+str(i[1])+"\tHackIns"+str(insertno)+"\tN\t"+seq+"\t60\tPASS\tPRECISE;SVTYPE=INS;SVLEN="+str(len(seq))+";END="+str(int(i[1])+len(seq))+";AF="+str(round(uniform(minAF,maxAF),2))+"\tGT:GQ\t0/0:60")
-    #         #PRECISE;SVTYPE=INS;SVLEN=333;END=748218 AF \t GT:GQ:DR:DV \t	0/0:28:28:5
-    #         insertno+=1
-    #     else:
-    #         dellen=choice(range(minsvl,maxsvl))
-    #         vcfsv.append(str(i[0])+"\t"+str(i[1])+"\tHackDel"+str(delno)+"\tN\t<DEL>\t60\tPASS\tPRECISE;SVTYPE=DEL;SVLEN=-"+str(dellen)+";END="+str(int(i[1])+dellen)+";AF="+str(round(uniform(minAF,maxAF),2))+"\tGT:GQ\t0/0:60")
-    #         delno+=1
+    for i in svloc:
+        draw = choice(tuple(['in','del']), 1, p=[insdel,1-insdel])    
+        if draw=='in':
+            seq=genseq(minsvl,maxsvl)
+            vcfsv.append(str(i[0])+"\t"+str(i[1])+"\tHackIns"+str(insertno)+"\tN\t"+seq+"\t60\tPASS\tPRECISE;SVTYPE=INS;SVLEN="+str(len(seq))+";END="+str(int(i[1])+len(seq))+";AF="+str(round(uniform(minAF,maxAF),2))+"\tGT:GQ\t0/0:60")
+            #PRECISE;SVTYPE=INS;SVLEN=333;END=748218 AF \t GT:GQ:DR:DV \t	0/0:28:28:5
+            insertno+=1
+        else:
+            dellen=choice(range(minsvl,maxsvl))
+            vcfsv.append(str(i[0])+"\t"+str(i[1])+"\tHackDel"+str(delno)+"\tN\t<DEL>\t60\tPASS\tPRECISE;SVTYPE=DEL;SVLEN=-"+str(dellen)+";END="+str(int(i[1])+dellen)+";AF="+str(round(uniform(minAF,maxAF),2))+"\tGT:GQ\t0/0:60")
+            delno+=1
     with open(SVvcf,"w") as f:
         for i in tuple(vcfsv)[:-1]:
             f.write(i+'\n')
