@@ -243,27 +243,20 @@ python main.py -v chr22SV.vcf -b chr22.HG002_hs37d5_ONT-UL_GIAB_20200122.phased.
 #### 4) TykeVarMerger - Re-Align Modified Reads and Merge Them
 Once the new reads are generated, they need to be re-aligned and re-inserted back into the dataset by replacing the original reads.
 
-We use `minimap2` for long read alignment and `bwa-mem2` for short reads. In the example, we tested on chromosome 22.
+We use `minimap2` for both short-read and long-read alignment. In the example, we tested on chromosome 22.
 ```
-# indexing reference genome
-bwa-mem2 index hs37d5.fa.gz
+# short read
+minimap2 -ax sr hs37d5.fa.gz -t 14 --secondary=no chr22.fastq | \
+    samtools view -bS --no-PG - > modified.chr22.bam
 
-minimap2 -x map-ont -d mm2_hs37d5.mmi hs37d5.fa.gz
-
-# mapping 
-bwa-mem2 mem -t 14 ~/reference/hs37d5.fa.gz chr22.fastq -o bwa_align/chr22.sam
-samtools view -bS --no-PG bwa_align/chr22.sam | \
-    samtools sort -@ 12 --no-PG - > bwa_align/chr22.sorted.bam
-
-minimap2 -a ~/reference/mm2_hs37d5.mmi -t 14 --secondary=no chr22.fastq | \
-    samtools view -bS --no-PG - > mod.chr22.bam
+# long read
+minimap2 -ax map-ont hs37d5.fa.gz -t 14 --secondary=no chr22.fastq | \
+    samtools view -bS --no-PG - > modified.chr22.bam
 ```
 
-Now that we have the alignments for modified reads, we then remove the old alignments with the same IDs of modified reads in the original bam, then insert the new alignments of modified reads back to this bam. The `--primary` argument here is to ensure we only keep primary alignments in the final bam.
-
+Now that we have the alignments for modified reads, we then remove the old alignments with the same IDs of modified reads in the original bam, then insert the new alignments of modified reads back into this bam.
 ```
-python filter_merge_bam.py -b chr22.HG002_hs37d5_ONT-UL_GIAB_20200122.phased.bam \
-    -m mod.chr22.bam -o . --prefix mod_chr22 --primary
+python filter_merge_bam.py -b chr22.HG002_hs37d5_ONT-UL_GIAB_20200122.phased.bam -m modified.chr22.bam
 ```
 
 #### 5) Run Your Favorite Mosaic Variant Caller
