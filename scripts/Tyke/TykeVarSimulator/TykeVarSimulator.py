@@ -121,7 +121,10 @@ def getrefsnp(reffile,snplist=1):
                 else:
                     if analyse==1:
                         data.append(tuple([chromosome,seq]))
-                chromosome=line.lstrip(">").split(" ")[0].lstrip("chr").rstrip("\n")
+                if "chr"==snplist[0][0][0:3]:
+                    chromosome=line.lstrip(">").split(" ")[0].rstrip("\n")
+		else:
+                    chromosome=line.lstrip(">").split(" ")[0].lstrip("chr").rstrip("\n")
                 seq=''
                 analyse=0
                 if chromosome in cta:
@@ -154,6 +157,7 @@ def main():
         npseed(int(seed))
     svloc=genlocSV(nosv,file,ceil(1/minAF))
     snvloc=genloc(nosnv,file,ceil(1/minAF))
+    
     #print(snvloc)
     vcfsv=[
         '##fileformat=VCFv4.2',
@@ -197,6 +201,7 @@ def main():
         '\t'.join(['#CHROM', 'POS', 'ID', 'REF', 'ALT', 'QUAL', 'FILTER', 'INFO', 'FORMAT', 'SAMPLE'])
     ]
     snps=getrefsnp(ref_path,snvloc)
+    
     from math import log
     
     for i in gensnps(maxsnp=maxsnp,sub=sub, snplist=snps):
