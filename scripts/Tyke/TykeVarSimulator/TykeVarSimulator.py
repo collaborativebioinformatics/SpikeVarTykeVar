@@ -123,7 +123,7 @@ def getrefsnp(reffile,snplist=1):
                         data.append(tuple([chromosome,seq]))
                 if "chr"==snplist[0][0][0:3]:
                     chromosome=line.lstrip(">").split(" ")[0].rstrip("\n")
-        else:
+                else:
                     chromosome=line.lstrip(">").split(" ")[0].lstrip("chr").rstrip("\n")
                 seq=''
                 analyse=0
