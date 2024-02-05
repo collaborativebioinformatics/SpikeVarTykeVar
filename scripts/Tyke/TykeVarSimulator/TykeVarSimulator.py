@@ -10,12 +10,12 @@ if len(sys.argv) < 2:
     exit(0)
 
 for a in sys.argv:
-	if a.startswith("AF="):
-		minAF=int(a.lstrip("AF="))
-		maxAF=int(a.lstrip("AF="))
-	else:
-		minAF=0.05 # minimum allele frequency SV   
-		maxAF=0.25  # maximum allele frequency SV
+    if a.startswith("AF="):
+        minAF=int(a.lstrip("AF="))
+        maxAF=int(a.lstrip("AF="))
+    else:
+        minAF=0.05 # minimum allele frequency SV   
+        maxAF=0.25  # maximum allele frequency SV
 minAFsnp=0.05   # minimum allele frequency SNV   
 maxAFsnp=0.25   # maximum allele frequency SNV
 file=sys.argv[1]   # source bam to simulate SVs from
@@ -123,7 +123,7 @@ def getrefsnp(reffile,snplist=1):
                         data.append(tuple([chromosome,seq]))
                 if "chr"==snplist[0][0][0:3]:
                     chromosome=line.lstrip(">").split(" ")[0].rstrip("\n")
-		else:
+        else:
                     chromosome=line.lstrip(">").split(" ")[0].lstrip("chr").rstrip("\n")
                 seq=''
                 analyse=0
