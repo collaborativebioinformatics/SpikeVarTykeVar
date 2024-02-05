@@ -175,7 +175,7 @@ def main():
         draw = choice(tuple(['in','del']), 1, p=[insdel,1-insdel])    
         if draw=='in':
             seq=genseq(minsvl,maxsvl)
-            vcfsv.append(str(i[0])+"\t"+str(i[1])+"\tHackIns"+str(insertno)+"\tN\t"+seq+"\t60\tPASS\tPRECISE;SVTYPE=INS;SVLEN="+str(len(seq))+";END="+str(int(i[1])+len(seq))+";AF="+str(round(uniform(minAF,maxAF),2))+"\tGT:GQ\t0/0:60")
+            vcfsv.append(str(i[0])+"\t"+str(i[1])+"\tHackIns"+str(insertno)+"\tN\t"+seq+"\t60\tPASS\tPRECISE;SVTYPE=INS;SVLEN="+str(len(seq))+";END="+str(int(i[1])+1)+";AF="+str(round(uniform(minAF,maxAF),2))+"\tGT:GQ\t0/0:60")
             #PRECISE;SVTYPE=INS;SVLEN=333;END=748218 AF \t GT:GQ:DR:DV \t	0/0:28:28:5
             insertno+=1
         else:
