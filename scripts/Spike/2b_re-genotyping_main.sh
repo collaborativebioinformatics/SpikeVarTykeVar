@@ -19,13 +19,13 @@ VCF_2=$4
 MOD_BAM=$5
 OUTPUT_DIR=$6
 READ_LENGTH=$7
-MERGED_VCF="${OUTPUT_DIR}/merged.vcf"
+MERGED_VCF="${OUTPUT_DIR}/merged.vcf.gz"
 OUTPUT_VCF="${OUTPUT_DIR}/output_genotypes.vcf"
 OUTPUT_VCF_FILTERED="${OUTPUT_DIR}/output_genotypes_filtered.vcf"
 REFERENCE=${8}
 
 # Merge the two VCF files with bcf tools
-bcftools merge $VCF_1 $VCF_2 -o $MERGED_VCF
+bcftools merge --force-samples -O z --write-index -o $MERGED_VCF $VCF_1 $VCF_2
 
 if [ "$VARIANT" = "SNV" ]; then
     echo "Input is 'SNV'"
