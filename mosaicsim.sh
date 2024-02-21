@@ -11,6 +11,15 @@ BASELINE_SPIKE=""
 SPIKEIN_SPIKE=""
 RATIO_SPIKE=""
 OUTPUT_SPIKE=""
+
+display_main_help() {
+        echo "Simulation of Mosaic Variants in Sequencing Data"
+        echo -e "\nUsage: mosicsim <pipline> [arguments]"
+        echo -e "\npipline:"
+        echo "  Tyke     Genrated simulated mosaic SV/SNV"
+        echo "  Spike    Simulates a sample with potential mosiac variants at a user-specified ratio"
+        exit 1
+} 
 display_Tyke_usage() {
     echo "Options:"
     echo "  -h, --help                     Display this help message"
@@ -113,12 +122,7 @@ parse_options_spike() {
 main() {
     # Check if any arguments are provided
     if [ $# -eq 0 ]; then
-        echo "Simulation of Mosaic Variants in Sequencing Data"
-        echo -e "\nUsage: mosicsim <pipline> [arguments]"
-        echo -e "\npipline:"
-        echo "  Tyke     Genrated simulated mosaic SV/SNV"
-        echo "  Spike    Simulates a sample with potential mosiac variants at a user-specified ratio"
-        exit 1
+	display_main_help
     fi
 
     # Parse the command and call respective function
