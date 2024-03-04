@@ -170,7 +170,7 @@ def main():
         '##INFO=<ID=SVTYPE,Number=1,Type=String,Description="Type of structural variation">',
         '##INFO=<ID=SVLEN,Number=1,Type=Integer,Description="Length of structural variation">',
         '##INFO=<ID=END,Number=1,Type=Integer,Description="End position of structural variation">',
-        '##INFO=<ID=AF,Number=1,Type=Float,Description="Allele Frequency">',
+        '##INFO=<ID=AF,Number=A,Type=Float,Description="Allele Frequency">',
         '\t'.join(['#CHROM', 'POS', 'ID', 'REF', 'ALT', 'QUAL', 'FILTER', 'INFO', 'FORMAT', 'SAMPLE'])
     ]
     insertno=1
@@ -197,7 +197,7 @@ def main():
         '##FILTER=<ID=PASS,Description="All filters passed">',
         '##FORMAT=<ID=GT,Number=1,Type=String,Description="Genotype">',
         '##FORMAT=<ID=AD,Number=R,Type=Integer,Description="Read depth for each allele">',
-        '##INFO=<ID=AF,Number=1,Type=Float,Description="Allele Frequency">',
+        '##INFO=<ID=AF,Number=A,Type=Float,Description="Allele Frequency">',
         '\t'.join(['#CHROM', 'POS', 'ID', 'REF', 'ALT', 'QUAL', 'FILTER', 'INFO', 'FORMAT', 'SAMPLE'])
     ]
     snps=getrefsnp(ref_path,snvloc)
