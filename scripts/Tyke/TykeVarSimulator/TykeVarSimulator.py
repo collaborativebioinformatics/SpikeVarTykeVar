@@ -197,6 +197,7 @@ def main():
         '##FILTER=<ID=PASS,Description="All filters passed">',
         '##FORMAT=<ID=GT,Number=1,Type=String,Description="Genotype">',
         '##FORMAT=<ID=AD,Number=R,Type=Integer,Description="Read depth for each allele">',
+        '##FORMAT=<ID=DV,Number=1,Type=Integer,Description="Number of variant reads">',
         '##INFO=<ID=AF,Number=A,Type=Float,Description="Allele Frequency">',
         '\t'.join(['#CHROM', 'POS', 'ID', 'REF', 'ALT', 'QUAL', 'FILTER', 'INFO', 'FORMAT', 'SAMPLE'])
     ]
@@ -208,7 +209,7 @@ def main():
         #TODO
         AFno=(round(uniform(minAF,maxAF),2))
         readno=ceil(AFno*i[2])
-        vcfsnv.append(str(i[0])+'\t'+str(i[1])+'\t.\t'+str(i[3])+'\t'+str(i[4])+"\t1500\tPASS\tAF="+str(AFno)+"\tGT:AD\t0/0:"+str(i[2]-readno)+":"+str(readno))
+        vcfsnv.append(str(i[0])+'\t'+str(i[1])+'\t.\t'+str(i[3])+'\t'+str(i[4])+"\t1500\tPASS\tAF="+str(AFno)+"\tGT:AD:DV\t0/0:"+str(i[2]-readno)+":"+str(readno))
     with open(SNVvcf,"w") as f:
         for i in tuple(vcfsnv)[:-1]:
             f.write(i+'\n')
