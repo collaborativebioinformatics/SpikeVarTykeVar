@@ -70,7 +70,8 @@ def vcf_number_variants(input_vcf_file, input_bam_file, refs, outfile):
             for read in bamfile.fetch(chromosome, start_position, end_position):
                 if read.query_sequence is not None and read.flag == 0 and read.query_name not in processed_read_ids:
                     variant_reads.append(read)
-            no_reads = max(1, math.ceil(len(variant_reads) * float(v.info.get('AF'))))
+            print(v.info.get('AF'))
+            no_reads = max(1, math.ceil(len(variant_reads) * float(v.info.get('AF')[0])))
             if no_reads > len(variant_reads):
                 #print(f"Coverage {len(variant_reads)} is below required minimum reads for variant {chromosome}:{start_position} AF {obj.AF}")
                 continue
