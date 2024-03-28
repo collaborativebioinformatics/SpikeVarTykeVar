@@ -8,15 +8,15 @@
 
 READ_LENGTH=$1
 VAF=$2
-VCF_A=$3
-VCF_B=$4
-MOD_BAM=$5
-OUTPUT_VCF=$6
-REFERENCE=$7
-OUTPUT_PFX=$8
+#$VCF_A=$3
+#VCF_B=$4
+MERGED_VCF=$3
+MOD_BAM=$4
+OUTPUT_VCF=$5
+REFERENCE=$6
+OUTPUT_PFX=$7
 
-echo "VCF_A: $VCF_A"
-echo "VCF_B: $VCF_B"
+echo "MERGED_VCF: $MERGED_VCF"
 echo "MOD_BAM: $MOD_BAM"
 
 if [ "$READ_LENGTH" = "short" ]; then
@@ -28,11 +28,7 @@ if [ "$READ_LENGTH" = "short" ]; then
 
 elif [ "$READ_LENGTH" = "long" ]; then
     echo "Input is 'long' starting Sniffles2"
-    sniffles --input $MOD_BAM --genotype-vcf $VCF_A --sample-id mosaicSim --vcf "${OUTPUT_VCF}.vcf1.vcf"
-    sniffles --input $MOD_BAM --genotype-vcf $VCF_B --sample-id mosaicSim --vcf "${OUTPUT_VCF}.vcf2.vcf"
-
-    # Merge the two VCF files with bcftools
-    bcftools merge --force-samples -O z --write-index -o $OUTPUT_VCF $VCF_A $VCF_B
+    sniffles --input $MOD_BAM --genotype-vcf $MERGED_VCF --sample-id mosaicSim --vcf "${OUTPUT_VCF}"
 
 else
     echo "Error: Invalid input"
