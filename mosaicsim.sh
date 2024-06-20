@@ -161,10 +161,9 @@ if [ $TYKE_FALG == "1" ]
 then
     echo "TykeVar pipline"
     echo "${BAM_TYKE}" "${REFERENCE_TYKE}" "${PREFIX_TYKE}" "${SEED_TYKE}"
-    exit
     python3 scripts/Tyke/TykeVarSimulator/TykeVarSimulator.py "${BAM_TYKE}" "${REFERENCE_TYKE}" "${PREFIX_TYKE}" "${SEED_TYKE}"
-    python3 main.py -v SIMULATED_VCF -b BAM -r REF -o OUTPUT_FASTQ
-    python3 filter_merge_bam.py -b BAM -m MOD_BAM --primary -o OUT_DIR --prefix PREFIX
+    python3 scripts/Tyke/main.py -v SIMULATED_VCF -b BAM -r REF -o OUTPUT_FASTQ
+    python3 scripts/Tyke/filter_merge_bam.py -b BAM -m MOD_BAM --primary -o OUT_DIR --prefix PREFIX
     exit
 fi 
 
