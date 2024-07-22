@@ -5,7 +5,18 @@ import sys
 def main(input_file:str,VAF:float, output_file:str):
     # Input vcf file
     vcf_file = rf'{input_file}'
-    df = pd.read_csv(vcf_file, sep='\t', comment='#', header=None)
+    # check if vcf file exists 
+    try:
+        open(vcf_file, 'r')
+    except FileNotFoundError:
+        print(f"Error: {vcf_file} not found")
+        sys.exit(1)
+
+    # Determine if the vcf file is compressed
+    compression=None
+    if vcf_file.endswith('.gz'):
+        compression='gzip'
+    df = pd.read_csv(vcf_file, sep='\t', comment='#', header=None, compression=compression)
 
 
     df_af = df.iloc[:, 8:]
@@ -32,9 +43,15 @@ def main(input_file:str,VAF:float, output_file:str):
 
 
     # load comment lines from vcf file
-    with open(vcf_file, 'rt') as f:
-        comments = [str(l) for l in f if l.startswith('#')]
-
+    comments = []
+    vcf_file_handler = open(vcf_file, "r") if "gz" not in vcf_file \
+        else gzip.open(vcf_file, "rt")
+    for line in vcf_file_handler:
+        if line.startswith("#"):
+            comments.append(line)
+        else:
+            break
+    vcf_file_handler.close()
 
     # convert dataframe to a list of string which are tab separated for each column where the qualified column is true
     df_qualified = df[df['qualified'] == True]
