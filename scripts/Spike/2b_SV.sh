@@ -8,29 +8,35 @@
 
 READ_LENGTH=$1
 VAF=$2
-#$VCF_A=$3
-#VCF_B=$4
-MERGED_VCF=$3
-MOD_BAM=$4
-OUTPUT_VCF=$5
-REFERENCE=$6
-OUTPUT_PFX=$7
+VCF_1=$3
+VCF_2=$4
+#MERGED_VCF=$3
+MOD_BAM=$5
+OUTPUT_DIR=$6
+REFERENCE=$7
+OUTPUT_PFX=$8
 
-echo "MERGED_VCF: $MERGED_VCF"
+echo "VCF_1: $VCF_1"
+echo "VCF_2: $VCF_2"
 echo "MOD_BAM: $MOD_BAM"
 
 if [ "$READ_LENGTH" = "short" ]; then
-
-    # https://github.com/Illumina/paragraph
-    bin/idxdepth -b ${MOD_BAM} -r ${REFERENCE} -o ${OUTPUT_PFX}.depth.json
-    printf  "id\tpath\tidxdepth\nmxsample\t${MOD_BAM}\t${OUTPUT_PFX}.depth.json\n" > ${OUTPUT_PFX}.sample_manifest.txt
-    python3 bin/multigrmpy.py -i  $MERGED_VCF -m   ${OUTPUT_PFX}.sample_manifest.txt  -r $REFERENCE  -o ${OUTPUT_PFX}_out
-
+    
+    # Run SV regenotyper for short reads
+    ./2b_sv_short.sh $VCF_1 $MOD_BAM $OUTPUT_DIR $REFERENCE
+    ./2b_sv_short.sh $VCF_2 $MOD_BAM $OUTPUT_DIR $REFERENCE
 elif [ "$READ_LENGTH" = "long" ]; then
-    echo "Input is 'long' starting Sniffles2"
-    sniffles --input $MOD_BAM --genotype-vcf $MERGED_VCF --sample-id mosaicSim --vcf "${OUTPUT_VCF}"
+    echo "Sniffles 1"
+    ./2b_sv_long.sh $VCF_1 $MOD_BAM "$OUTPUT_DIR/sample1.regenotyped.vcf.gz"
+    ./2b_vaf_filter.sh "$OUTPUT_DIR/sample1.regenotyped.vcf.gz" $VAF "$OUTPUT_DIR/sample1.regenotyped.filtered.vcf"
+    
+    echo "Sniffles 2"
+    ./2b_sv_long.sh $VCF_2 $MOD_BAM "$OUTPUT_DIR/sample2.regenotyped.vcf.gz"
+    ./2b_vaf_filter.sh "$OUTPUT_DIR/sample2.regenotyped.vcf.gz" $VAF "$OUTPUT_DIR/sample2.regenotyped.filtered.vcf"
 
+    # Do merging of the two filtered VCF files
+    ./2b_vcf_merge.sh "$OUTPUT_DIR/sample1.regenotyped.filtered.vcf.gz" "$OUTPUT_DIR/sample2.regenotyped.filtered.vcf.gz" "$OUTPUT_DIR/output_regenotyped.vcf"
+    #./2b_vcf_merge.sh "$OUTPUT_DIR/sample1.regenotyped.vcf.gz" "$OUTPUT_DIR/sample2.regenotyped.vcf.gz" "$OUTPUT_DIR/output_regenotyped.vcf"
 else
     echo "Error: Invalid input"
 fi
-
